@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {% if not title %}
+    <title>Shellmancer</title>
+  {% else %}
+    <title>Shellmancer | {{title}}</title>
+  {% endif %}
+
+  <link rel="stylesheet" type="text/css" href="static/css/slate.css">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Orbitron:600|Quantico:400i|Seymour+One|Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+
+    .font-share {
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+.font-inline {
+    font-family: 'Bungee Inline', cursive;
+  }
+
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+.font-seymour {
+    font-family: 'Seymour One', sans-serif;
+  }
+
+.font-quantico {
+    font-family: 'Quantico', sans-serif;
+  }
+
+
+  </style>
+
+
+</head>
+<body>
+
+<!-- Cover Image.  -->
+<div class="wrappper">
+  <div class="innner">
+    <!-- <img src="img/test.svg" width="100%" class="fixed-top"> -->
+  </div>
+</div>
+<!--  -->
+
+<!-- Top Menubar Element -->
+<div id="top-nav" class="fixed-top">
+<ul class="nav nav-tabs bg-primary container-fluid">
+
+  <!-- File Dropdown -->
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      File
+    </a>
+    <div class="dropdown-menu">
+      <div id="file-menu-div" class="inactive">
+        <a id="file-menu-open-link" class="dropdown-item" href="#">
+          <span id="file-menu-open">Open Something</span>
+        </a>
+      </div>
+    </div>
+  </li>
+
+ <!-- View Dropdown Button -->
+  <li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+       View
+     </a>
+    <div class="dropdown-menu">
+      <div id="view-menu-div" class="inactive">
+        <a id="view-menu-open-link" class="dropdown-item" href="#">
+          <span id="view-menu-open">Toggle Something</span>
+        </a>
+      </div>
+    </div>
+  </li>
+
+ <!-- Tools Dropdown -->
+ <li class="nav-item dropdown">
+   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+     Tools
+   </a>
+
+      <!-- Dropdown 1  -->
+       <div class="dropdown-menu">
+        <a id="toggle-terminal" class="dropdown-item" href="#">
+          <span id="tools-menu-open">Open Something</span>
+        </a>
+       </div>
+
+ </li>
+</ul>
+</div>
+<!--  -->
+
+
+   <!-- Binary Heading Piece -->
+      <div class="jumbotron bg-dark mt-2" style="background-image: url('static/img/matrixcode.png');">
+        <h1 class="container display-3 bg-primary border border-light text-light text-center">
+
+            <span class="font-inline text-success" style="text-shadow: 5px 8px var(--purple);">
+
+                     SHELLMANCER
+
+            </span>
+
+        </h1>
+
+        <!-- Tagline space. -->
+        <div class="container">
+<!--          <p>Maybe I will put something here.</p>-->
+        </div> <!-- Outer Margins Close -->
+      </div> <!-- Jumbrotron Close -->
+<!--  -->
+
+
+</div>
+  <!-- Navbar End -->
+
+
+<!--Flash Messages-->
+<div class="container">
+  <div class="mr-5 ml-5">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{category}}">
+            <small>{{ message }}</small>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+</div>
+<!--  -->
+
+
+<!-- Weird Attempts at Tab Content We Aren't Even Using Yet -->
+<div id="tab-container" class="tab-content">
+
+<!--  <p>This text is currently hidden by the top navbar but it gives a litte bit of top margin and shows me where I'm-->
+<!--  at in the document.</p>-->
+
+    <!-- TAB 1 -->
+  <div id="welcome" class="tab-pane fade show active">
+
+    <!-- Div Creates the Outer Margins on the left and right at full size viewport -->
+    <div class="container" width="100%">
+
+
+
+      <!-- The inner background behind the side bar and the content space -->
+      <div class="container-fluid vertical-wrap" style="background-image: url('img/purpcirc.jpg');">
+        <div class="row">
+
+                  <!--  HEADER FINISHED --
+
+                    <!--  DOCUMENT BODY BEGINS  -->
+
+
+          <div class="col-sm-5 col-md-4 col-lg-3">
+
+
+
+
+
+<div class="card border-purple text-light bg-dark mb-2">
+  <div class="card-header text-center text-info"><h4>Documentation</h4></div>
+  <div class="card-body bg-primary">
+
+
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    The Prototype Campaign
+    <span class="badge badge-primary badge-pill">1</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    The Campaign Setting Specification
+    <span class="badge badge-primary badge-pill">2</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Shell Design and Game Building
+    <span class="badge badge-primary badge-pill">1</span>
+  </li>
+</ul>
+
+      <p class="card-text"></p>
+  </div>
+</div>
+
+
+
+
+</div>
+
+
+
+
+<div class="col-sm-7 col-md-8 col-lg-8">
+
+
+
+
+<div class="">
+
+
+<div class="card">
+ <div class="card-body">
+
+     {% block content %}{% endblock %}
+
+   <h4 class="card-title">Just Another Shell Hacker</h4>
+   <h5 class="card-subtitle mb-2 text-muted">This isn’t your post-1980’s cyberpunk role playing game and it’s not
+                                                   the far future in “Just Another Shell Hacker.”
+ </h5>
+
+
+ <p class="card-text">
+
+
+
+
+<p class="card-text">
+     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">
+     ---<p>
+        It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">     It’s not “Just Another Shell Hacker 2077” because this isn’t the far future we’re living in.</p>
+<p class="card-text">
+     It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name, nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
+<p class="card-text">
+     And guess what? We’re in meatspace; you know what that’s like, really? I mean real deep into meatspace. You know how it’s different for us out here?</p>
+<p class="card-text">
+     There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me from the neural net? I can’t even login to my own name.</p>
+<p class="card-text">
+     So let’s see how far you can get out of this corporate cesspool and back to verified status to operate in the confines of the corporate fucking rule of this planet -- where everything worth living for exists in geocentric orbit with trash, debris, and the view of Earth from up there behind so much cloudy dust and bullshit you can’t even really see how bad it is down there.</p>
+<p class="card-text">
+     Down here, motherfucker. Check your privilege -- you ain’t got none. This is where we live. This is how we live. This isn’t what you want to do. And this isn’t what you plan to do.</p>
+<p class="card-text">
+     Stick around, kid. You’re not going to find the typical cyberpunk classes roles to play here. You are a hacker. You’re just another one. We’re all hackers.</p>
+<p class="card-text">
+     Let’s see what’s going to happen real quick if you’re not.</p>
+<p class="card-text">
+     Would you like to know the rules of the game or get started on your character sheet right away.
+   </p>
+   <a href="#" class="card-link">More Info on Game</a>
+   <a href="#" class="card-link">Get Started with Character</a>
+ </div>
+</div>
+
+
+<div class="card mt-1">
+ <div class="card-body">
+   <h4 class="card-title">You sure kid?</h4>
+   <h6 class="card-subtitle mb-4 text-muted">You just made your first choice.</h6>
+
+<p class="card-text">
+  What’s your character’s name?
+</p>
+<p class="card-text">
+           ---</p>
+<p class="card-text">
+           Oh, wait...</p>
+<p class="card-text">
+           That’s a perk you don’t get at starting level. Let’s talk about your new email address.</p>
+<p class="card-text">
+           Yeah, the new one. You think you’re just going to log back into a Virtico account down here? Shit. That’s a god damn laugh I needed.</p>
+<p class="card-text">
+           Bitch, where you gonna make your email account at? Where you gonna type in the address to their node on what interface with what network? I don’t even want your cool hacker name, bitch.</p>
+<p class="card-text">
+           You namesless, kid. Just Another Shell Hacker. Remember that.</p>
+
+
+   <a href="#" class="card-link">More Info on Game</a>
+   <a href="#" class="card-link">Get Started with Character</a>
+ </div>
+</div>
+
+
+
+
+</div>
+
+<!-- Back to Footer --></div>
+</div></div></div></div>
+
+
+<!-- Text Tab -->
+<div class="tab-pane fade show" id="start">
+ <div class="container">
+   <div class="inner">
+     <div class="row">
+       <div class="col-lg-12">
+
+         <div class="page-header">
+           <h1 class="text-success">Character Creation</h1>\
+         </div>
+       </div>
+     </div>
+
+ <div class="row">
+   <div class="col-lg-6">
+
+   <form>
+     <fieldset>
+       <legend>Legend</legend>
+       <div class="form-group">
+         <label for="exampleInputEmail1">Email address</label>
+         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter email">
+         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+     </fieldset>
+   </form>
+  You just made your first choice.c
+
+   </div>
+   <div class="col-lg-6">
+
+   </div>
+  </div>
+ </div>
+ </div>
+
+
+
+</div>
+
+
+       <div class="tab-pane fade show" id="rules">
+
+
+       <pre>
+       <code>
+
+
+
+       </code>
+
+       </pre>
+
+       </div>
+
+           <!-- Container for Bottom Fixed Pieces -->
+          <div class="fixed-bottom">
+            <!-- Container for Vanilla Terminal  -->
+           <div id="vanilla-terminal" class="default-off"></div>
+
+               <!-- Container for Fim -->
+
+              </div>
+            </div>
+
+<!--  -->
+
+
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/popper.min.js"></script>
+  <script src="static/js/bootstrap.min.js"></script>
+
+</body>
+</html>
