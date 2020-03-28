@@ -1,0 +1,101 @@
+<div id="top-nav" class="fixed-top">
+<ul class="nav nav-tabs bg-primary container-fluid">
+
+<!-- Account Dropdown -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+     href="#">
+    Account
+  </a>
+
+  <div class="dropdown-menu">
+    <div id="account-menu-div">
+      <a id="account-menu-player-profile" class="dropdown-item" href="{{ url_for('player_profile') }}">
+        <span>Player Profile</span>
+      </a>
+
+      <a id="account-menu-gm-profile" class="dropdown-item inactive" href="#">
+        <span>GameMaster Profile</span>
+      </a>
+
+      <a id="account-menu-settings" class="dropdown-item" href="#">
+        <span>Settings</span>
+      </a>
+
+      <a id="account-menu-logout" class="dropdown-item" href="{{ url_for('logout') }}">
+        <span>Logout</span>
+      </a>
+    </div>
+  </div>
+</li>
+
+<!-- View Dropdown Button -->
+ <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+       href="#">
+      Browse
+    </a>
+
+   <div class="dropdown-menu">
+     <div id="browse-menu-div" class="inactive">
+       <a id="browse-menu-campaigns" class="dropdown-item" href="#">
+         <span>Campaigns</span>
+       </a>
+
+       <a id="browse-menu-open-link" class="dropdown-item" href="#">
+         <span>Characters</span>
+       </a>
+     </div>
+   </div>
+ </li>
+
+<!-- View Dropdown Button -->
+<li class="nav-item dropdown">
+   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+     View
+   </a>
+
+  <div class="dropdown-menu">
+    <div id="view-menu-div" class="inactive">
+      <a id="view-menu-placeholder" class="dropdown-item" href="#">
+        <span>Toggle Something</span>
+      </a>
+    </div>
+  </div>
+</li>
+
+<!-- Tools Dropdown -->
+<li class="nav-item dropdown">
+ <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+   Tools
+ </a>
+
+ <div class="dropdown-menu">
+  <a id="toggle-terminal" class="dropdown-item" href="#">
+    <span id="tools-menu-open">Open Something</span>
+  </a>
+ </div>
+</li>
+
+<!-- Help Dropdown -->
+<li class="nav-item dropdown">
+ <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+   Help
+ </a>
+
+  <!-- Dropdown 1  -->
+   <div class="dropdown-menu">
+    <a id="help-menu-docs" class="dropdown-item" href="{{ url_for('docs') }}">
+      <span>Documentation</span>
+    </a>
+   </div>
+
+  <div class="dropdown-menu">
+    <a id="help-menu-about" class="dropdown-item" href="#">
+      <span>About</span>
+    </a>
+  </div>
+
+</li>
+</ul>
+</div>

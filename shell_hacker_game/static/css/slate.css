@@ -35,9 +35,9 @@
   --dark: #272B30;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
+  /*--breakpoint-md: 768px;*/
+  --breakpoint-md: 992px;\
   --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -576,7 +576,7 @@ pre code {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .container {
     max-width: 1140px;
   }
@@ -608,7 +608,7 @@ pre code {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .container, .container-sm, .container-md, .container-lg, .container-xl {
     max-width: 1140px;
   }
@@ -1635,7 +1635,7 @@ pre code {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .col-xl {
     -ms-flex-preferred-size: 0;
         flex-basis: 0;
@@ -3528,7 +3528,7 @@ input[type="button"].btn-block {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .dropdown-menu-xl-left {
     right: auto;
     left: 0;
@@ -4865,7 +4865,7 @@ input[type="button"].btn-block {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .navbar-expand-xl {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -6024,7 +6024,7 @@ a.badge-dark:focus, a.badge-dark.focus {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .list-group-horizontal-xl {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -6516,7 +6516,7 @@ a.close.disabled {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .modal-xl {
     max-width: 1140px;
   }
@@ -7460,7 +7460,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .d-xl-none {
     display: none !important;
   }
@@ -8238,7 +8238,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .flex-xl-row {
     -webkit-box-orient: horizontal !important;
     -webkit-box-direction: normal !important;
@@ -8445,7 +8445,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .float-xl-left {
     float: left !important;
   }
@@ -10095,7 +10095,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .m-xl-0 {
     margin: 0 !important;
   }
@@ -10510,7 +10510,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .text-xl-left {
     text-align: left !important;
   }

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% block content %}
+
+{% block sidebar %}
   <div>
     <form method="POST" action="">
       {{ form.hidden_tag() }}
@@ -49,14 +50,36 @@
         </div>
 
         <div>
-          {{ form.submit(class="btn btn-purple") }}
+          {{ form.submit(class="btn btn-block btn-purple") }}
         </div>
       </fieldset>
     </form>
   </div>
-<div class="border-top pt-3">
-  <small class="text-muted">
-    Already have an account? <a class="ml-2" href="{{ url_for('login') }}">Login</a>
+
+<div class="border-top pt-2">
+
+  <small class="text-muted float-right">
+    Already have an account?
+    <a class="ml-2 btn btn-sm btn-transparent btn-outline-info"
+       href="{{ url_for('login') }}">Login</a>
   </small>
+
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="card">
+ <div class="card-body">
+  ffdgfdgfd
+ </div>
+</div>
+{% endblock %}
+
+{% block buttons %}
+<div class="card">
+ <div class="card-body">
+  ffdgfdgfd
+ </div>
 </div>
 {% endblock %}

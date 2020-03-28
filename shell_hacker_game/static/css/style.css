@@ -1,0 +1,21 @@
+/* Just selectors I have to add myself */
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-pic {
+  width: 200px;
+  display: block;
+  object-fit: cover;
+}
+
+
+.sidebar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}

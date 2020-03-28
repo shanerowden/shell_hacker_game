@@ -1,0 +1,17 @@
+/* This is primarily writing over bootstrap classes for my own uses. */
+
+.alert {
+  position: relative;
+  padding: 0.75rem 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert-dismissible .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.75rem 1.75rem;
+  color: inherit;
+}

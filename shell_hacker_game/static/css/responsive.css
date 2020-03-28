@@ -1,0 +1,102 @@
+/* Just a lot of media query nonsense 
+ * 
+ * --breakpoint-sm: 576px;
+ * --breakpoint-md: 768px;
+ * --breakpoint-md: 992px;
+ * --breakpoint-lg: 1200px;
+ * 
+ */
+
+
+
+@media screen and (max-width: 576px) {
+    #rightbar {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 992px)  {
+    #leftbar {
+        display: none;
+    }
+}
+
+
+
+@media screen and (max-width: 896px) {
+    #header-title {
+      font-size: 5.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+}
+
+@media screen and (max-width: 790px) {
+  #header-title {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  #header-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  #header-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  #header-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.9;
+  }
+}
+
+@media screen and (max-width: 250px) {
+  #header-title {
+    display: none;
+  }
+}
+
+
+
+@media screen and (max-width: 500px) {
+    #top-nav {
+        display: none;
+    }
+/*   Show alternative menu   */
+}
+
+@media screen and (max-width: 500px) {
+  #top-nav {
+  display: none;
+  }
+}
+
+
+.btn-group-resize {
+/*   padding: 0.25rem 0.5rem; */
+  font-size: 0.8203125rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+@media screen and (min-width: 992px) {
+  .btn-group-resize > .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+  }
+}
