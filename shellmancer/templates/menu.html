@@ -14,9 +14,11 @@
         <span>Player Profile</span>
       </a>
 
-      <a id="account-menu-gm-profile" class="dropdown-item inactive" href="#">
+      {% if current_user.gamemaster.gamemaster_access > 0 %}
+      <a id="account-menu-gm-profile" class="dropdown-item inactive" href="{{ url_for('gamemaster_profile') }}">
         <span>GameMaster Profile</span>
       </a>
+      {% endif %}
 
       <a id="account-menu-settings" class="dropdown-item" href="#">
         <span>Settings</span>

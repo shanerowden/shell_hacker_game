@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
-from shell_hacker_game import app, db, bcrypt
-from shell_hacker_game.forms import RegisterForm, LoginForm
-from shell_hacker_game.models import UserAccount, PlayerProfile
+from shellmancer import app, db, bcrypt
+from shellmancer.forms import RegisterForm, LoginForm, NewCampaignForm, UserSettingsForm
+from shellmancer.models import UserAccount, SinglePlayerCampaign
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -27,7 +27,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        flash(f"Account created for {form.email.data}. You are now able to login.", 'success')
+        flash(f"Account created for {form.email.data}.", 'success')
         return redirect(url_for('login'))
 
     return render_template("register.html",
@@ -38,7 +38,7 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('player_profile'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -71,6 +71,54 @@ def logout():
 @login_required
 def player_profile():
     return render_template("player.html")
+
+
+@app.route('/gamemaster')
+@login_required
+def gamemaster_profile():
+    if current_user.gamemaster.gamemaster_access > 0:
+        campaigns = SinglePlayerCampaign.query.filter_by(gamemaster_id=current_user.gamemaster.gamemaster_id)
+        return render_template("gamemaster.html", campaigns=campaigns)
+    else:
+        flash("This user is not a gamemaster", 'info')
+        return redirect(url_for('player_profile'))
+
+
+@app.route('/gamemaster-make')
+@login_required
+def make_gamemaster():
+    if current_user.gamemaster.gamemaster_access > 0:
+        flash("User is already a game master", 'info')
+        return redirect(url_for('gamemaster_profile'))
+    else:
+        current_user.gamemaster.gamemaster_access = 1
+        db.session.add(current_user)
+        db.session.commit()
+        flash("{{current_user.email}} set to gamemaster.")
+        return redirect(url_for('gamemaster_profile'))
+
+@app.route('/gamemaster-new', methods=['GET', 'POST'])
+@login_required
+def new_campaign():
+    if current_user.gamemaster.gamemaster_access > 0:
+        form = NewCampaignForm()
+        if form.validate_on_submit():
+            campaign = SinglePlayerCampaign(gamemaster_id=current_user.gamemaster.gamemaster_id,
+                                            campaign_name=form.title.data,
+                                            campaign_descrip=form.descrip.data)
+            db.session.add(campaign)
+            db.session.commit()
+            return redirect(url_for('gamemaster_profile'))
+    return render_template("campaign_new.html",
+                           form=form)
+
+@app.route('/settings', methods=['GET', 'POST'])
+@login_required
+def user_settings():
+    form = UserSettingsForm()
+    if form.validate_on_submit():
+        pass
+        
 
 
 @app.route('/docs')

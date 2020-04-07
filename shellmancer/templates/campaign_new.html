@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block sidebar %}{% endblock %}
+
+
+
+{% block content %}
+<div>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Create New Campaign</legend>
+
+        <!--   Title     -->
+        <div class="form-group">
+          {% if form.title.errors %}
+            {{ form.title(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.title.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.title(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+        <!--   Descrip     -->
+        <div class="form-group">
+          {% if form.descrip.errors %}
+            {{ form.descrip(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.descrip.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.descrip(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+        <!--   Submit   -->
+        <div class="form-inline float-left" style="width:57%;">
+          {{ form.submit(class="btn btn-lg btn-block btn-purple") }}
+        </div>
+
+      </fieldset>
+    </form>
+
+  </div>
+{% endblock %}
+
+
+
