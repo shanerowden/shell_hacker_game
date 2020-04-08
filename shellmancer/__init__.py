@@ -8,8 +8,6 @@ from flask_migrate import Migrate
 app = Flask("shellmancer")
 app.config.from_object(os.environ['APP_SETTINGS'])
 
-
-
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
