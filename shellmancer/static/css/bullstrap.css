@@ -15,3 +15,14 @@
   padding: 0.75rem 1.75rem;
   color: inherit;
 }
+
+.my-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}

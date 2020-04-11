@@ -69,17 +69,12 @@
 
 
 {% block content %}
-<div class="card">
- <div class="card-body">
-  ffdgfdgfd
- </div>
-</div>
+  {% include 'main_noauth.html' %}
 {% endblock %}
 
 {% block buttons %}
-<div class="card">
- <div class="card-body">
-  ffdgfdgfd
- </div>
+<div class="nav nav-tabs">
+  <a href="#one" data-toggle="tab" class="nav-link active">Introduction</a>
+  <a href="#two" data-toggle="tab" class="nav-link">Create Character</a>
 </div>
 {% endblock %}
