@@ -34,12 +34,21 @@
 <!-- Binary Heading Piece -->
 {% include 'header.html' %}
 
+
 <!-- Div Creates the Outer Margins on the left and right at full size viewport -->
 <div class="container" width="100%">
 
+
+
   <!-- The inner background behind the side bar and the content space -->
   <div class="container-fluid vertical-wrap">
+
+    <div id="leftbar-alt">
+          {% block leftbaralt %}{% endblock %}
+    </div>
     <div class="row">
+
+
 
       <!-- Old Flash Message Spot -->
 
@@ -50,8 +59,11 @@
       </div>
 
       <!-- Content -->
+
       <div id="contentbar"
-           class="col-xs-0 col-sm-10 col-md-10 col-lg-7 col-xl-7">
+           class="col-xs-0 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+
+
 
          <!--Flash Messages-->
 <!--        <div class="card">-->
@@ -76,6 +88,10 @@
 
     <!--  Next Card  -->
          {% block content %}{% endblock %}
+
+        <div id="rightbar-alt" class="mt-3 mb-3">
+          {% block rightbaralt %}{% endblock %}
+      </div>
 
       </div>
 
