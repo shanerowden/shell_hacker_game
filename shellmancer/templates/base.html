@@ -46,6 +46,7 @@
     <div id="leftbar-alt">
           {% block leftbaralt %}{% endblock %}
     </div>
+
     <div class="row">
 
 
@@ -86,12 +87,14 @@
                 {% endwith %}
             </div>
 
+        <div id="rightbar-alt" class="mt-3 mb-3">
+          {% block rightbaralt %}{% endblock %}
+        </div>
+
     <!--  Next Card  -->
          {% block content %}{% endblock %}
 
-        <div id="rightbar-alt" class="mt-3 mb-3">
-          {% block rightbaralt %}{% endblock %}
-      </div>
+
 
       </div>
 

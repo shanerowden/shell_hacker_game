@@ -1,0 +1,86 @@
+<!--"1"-->
+  <div>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Welcome back</legend>
+
+        <!--   Email     -->
+        <div class="form-group">
+          {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.email.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.email(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+        <!--   Password     -->
+        <div class="form-group">
+          {% if form.password.errors %}
+            {{ form.password(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.password.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.password(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+        <!--   Remember Me   -->
+        <div class="form-inline float-right ml-1" style="width:40%;">
+
+          <div class="custom-control custom-checkbox">
+            <small>
+              <strong>
+
+                {{ form.remember(type="checkbox",
+                                 class="custom-control-input",
+                                 id="rememberMeToggle",
+                                 checked="") }}
+
+                {{ form.remember.label(class="custom-control-label text-muted",
+                                       for="rememberMeToggle") }}
+              </strong>
+            </small>
+
+          </div>
+
+          <div class="custom-control custom-checkbox">
+
+            <!--    Forgot Password    -->
+            <div class="mt-2 btn btn-sm btn-transparent btn-outline-danger text-right">
+              <small>
+                <a href="#" class="float-right">Forgot?</a>
+              </small>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!--   Submit   -->
+        <div class="form-inline float-left" style="width:57%;">
+          {{ form.submit(class="btn btn-lg btn-block btn-purple") }}
+        </div>
+
+      </fieldset>
+    </form>
+
+  </div>
+
+  <div class="border-top pt-2 pb-4">
+
+    <small class="text-muted float-right">
+      No account yet?
+      <a class="ml-2 btn btn-sm btn-transparent btn-outline-info" href="{{ url_for('register') }}">Register</a>
+    </small>
+
+  </div>
+<!--"2"-->
