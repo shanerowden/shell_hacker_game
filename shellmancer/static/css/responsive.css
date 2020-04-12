@@ -17,7 +17,7 @@
 
 @media screen and (max-width: 576px) {
     #rightbar {
-        display: none;
+        display: block;
     }
 }
 
@@ -34,8 +34,17 @@
     #rightbar-alt {
         display: block;
     }
+    .nav {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+   }
 }
-
 
 
 @media screen and (max-width: 896px) {

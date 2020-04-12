@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+  {% include 'player_side.html' %}
+{% endblock %}
+
+{% block content %}
+  <div>
+    <form method="POST" action="" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Account Settings</legend>
+
+        <!--   User Alias     -->
+        <div class="form-group">
+          {% if form.user_name.errors %}
+            {{ form.user_name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.user_name.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.user_name.label() }}
+            {{ form.user_name(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+
+
+<!--   Email     -->
+        <div class="form-group">
+          {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.email.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.email.label() }}
+            {{ form.email(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+
+<!--    Profile Picture    -->
+        <div class="form-group">
+          {{ form.image_file.label() }}
+          {{ form.image_file(class="form-control") }}
+          {% if form.image_file.errors %}
+            {% for error in form.image_file.errors %}
+              <span class="text-danger">{{ error }}</span></br>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+<!--    Agree Over 18    -->
+        <div class="form-group">
+          {{ form.agree_over_18.label() }}
+          {{ form.agree_over_18(class="custom-control custom-checkbox") }}
+          {% if form.agree_over_18.errors %}
+            {% for error in form.agree_over_18.errors %}
+              <span class="text-danger">{{ error }}</span></br>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <div>
+          {{ form.submit(class="btn btn-block btn-purple") }}
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+<div class="border-top pt-2">
+
+
+</div>
+{% endblock %}
+
+{% block buttons %}{% endblock %}

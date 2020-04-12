@@ -1,5 +1,5 @@
 <div id="top-nav" class="fixed-top">
-<ul class="nav nav-tabs bg-primary container-fluid">
+<ul class="top-nav nav-tabs bg-primary container-fluid">
 
 <!-- Account Dropdown -->
 <li class="nav-item dropdown">
@@ -8,7 +8,7 @@
     Account
   </a>
 
-  <div class="dropdown-menu">
+  <div class="dropdown-menu bg-dark">
     <div id="account-menu-div">
       <a id="account-menu-player-profile" class="dropdown-item" href="{{ url_for('player_profile') }}">
         <span>Player Profile</span>
@@ -20,7 +20,7 @@
       </a>
       {% endif %}
 
-      <a id="account-menu-settings" class="dropdown-item" href="#">
+      <a id="account-menu-settings" class="dropdown-item" href="{{ url_for('user_settings') }}">
         <span>Settings</span>
       </a>
 
@@ -38,7 +38,7 @@
       Browse
     </a>
 
-   <div class="dropdown-menu">
+   <div class="dropdown-menu bg-dark">
      <div id="browse-menu-div" class="inactive">
        <a id="browse-menu-campaigns" class="dropdown-item" href="#">
          <span>Campaigns</span>
@@ -57,46 +57,45 @@
      View
    </a>
 
-  <div class="dropdown-menu">
+  <div class="dropdown-menu bg-dark">
     <div id="view-menu-div" class="inactive">
-      <a id="view-menu-placeholder" class="dropdown-item" href="#">
-        <span>Toggle Something</span>
-      </a>
+     <a id="open-terminal" class="dropdown-item" href="#">
+       <span id="terminal-option-listing-open">Open Terminal</span>
+       <span id="terminal-option-listing-close" class="default-off">Close Terminal</span>
+     </a>
     </div>
   </div>
 </li>
 
 <!-- Tools Dropdown -->
-<li class="nav-item dropdown">
- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-   Tools
- </a>
+<!--<li class="nav-item dropdown">-->
+<!-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">-->
+<!--   Tools-->
+<!-- </a>-->
 
- <div class="dropdown-menu">
-  <a id="toggle-terminal" class="dropdown-item" href="#">
-    <span id="tools-menu-open">Open Something</span>
-  </a>
- </div>
-</li>
+<!-- <div class="dropdown-menu bg-dark">-->
+<!--   <a id="open-terminal" class="dropdown-item" href="#">-->
+<!--    <span id="terminal-option-listing-open">Open Terminal</span>-->
+<!--    <span id="terminal-option-listing-close" class="default-off">Close Terminal</span>-->
+<!--   </a>-->
+<!-- </div>-->
+<!--</li>-->
 
 <!-- Help Dropdown -->
-<li class="nav-item dropdown">
- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-   Help
- </a>
+<!--<li class="nav-item dropdown">-->
+<!-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">-->
+<!--   Help-->
+<!-- </a>-->
 
-  <!-- Dropdown 1  -->
-   <div class="dropdown-menu">
-    <a id="help-menu-docs" class="dropdown-item" href="{{ url_for('docs') }}">
-      <span>Documentation</span>
-    </a>
-   </div>
-
-  <div class="dropdown-menu">
-    <a id="help-menu-about" class="dropdown-item" href="#">
-      <span>About</span>
-    </a>
-  </div>
+<!--  &lt;!&ndash; Dropdown 1  &ndash;&gt;-->
+<!--   <div class="dropdown-menu bg-dark">-->
+<!--    <a id="help-menu-docs" class="dropdown-item" href="{{ url_for('docs') }}">-->
+<!--      <span>Documentation</span>-->
+<!--    </a>-->
+<!--    <a id="help-menu-about" class="dropdown-item" href="#">-->
+<!--      <span>About</span>-->
+<!--    </a>-->
+<!--   </div>-->
 
 </li>
 </ul>
