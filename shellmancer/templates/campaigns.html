@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 
-
 {% block sidebar %}
-    {% include 'player_side.html' %}
+  {% include 'player_side.html' %}
 {% endblock %}
-
-
 
 {% block content %}
+
 <div class="card">
  <div class="card-body">
-   {{ current_user.is_over_18 }}
+   <h2>All Campaigns</h2>
+   <hr>
+   {% for campaign in campaigns %}
+   <h4 class="text-success"><a href="">{{ campaign.campaign_name }}</a></h4> by
+        {{ campaign.gamemaster.user.user_name }} </br>
+       {{ campaign.campaign_descrip }} </br></br>
+   {% endfor %}
  </div>
 </div>
+
 {% endblock %}
-
-
 
 {% block buttons %}
 <!--<div class="btn-group-vertical btn-group-resize btn-group-sm float-right">-->

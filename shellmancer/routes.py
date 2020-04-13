@@ -1,11 +1,14 @@
 import os
 import secrets
 from flask import render_template, flash, redirect, url_for, request
-from shellmancer import app, db, bcrypt
-from shellmancer.forms import RegisterForm, LoginForm, NewCampaignForm, UserSettingsForm
+from shellmancer import app, db, bcrypt, mail
+from shellmancer.forms import (
+    RegisterForm, LoginForm, NewCampaignForm, UserSettingsForm, RequestResetForm, PasswordResetForm
+)
 from shellmancer.models import UserAccount, SinglePlayerCampaign
 from flask_login import login_user, current_user, logout_user, login_required
 from PIL import Image
+from flask_mail import Message
 
 
 # Routes
@@ -145,18 +148,67 @@ def user_settings():
             current_user.image_file = picture_file
         current_user.user_name = form.user_name.data
         current_user.email = form.email.data
-        current_user.agree_over_18 = form.agree_over_18.data
+        current_user.is_over_18 = form.is_over_18.data
         db.session.commit()
         flash("Your account has been updated", 'success')
         return redirect(url_for('user_settings'))
     elif request.method == 'GET':
         form.user_name.data = current_user.user_name
         form.email.data = current_user.email
-        form.agree_over_18.data = current_user.agree_over_18
+        form.is_over_18.data = current_user.is_over_18
     return render_template('settings.html',
                            title=f"Settings for {current_user.email}",
                            form=form)
 
+@app.route('/campaigns')
+def all_campaigns():
+    campaigns = SinglePlayerCampaign.query.all()
+    campaigns.reverse()
+    return render_template('campaigns.html',
+                           title="All Campaigns", campaigns=campaigns)
+
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message("Password Reset Request From Shellmancer",
+                  sender=os.environ['MAIL_USERNAME'], recipients=[user.email])
+    msg.body = "To reset your password, visit the following link:" \
+        + f"{url_for('reset_token', token=token, _external=True)}"
+    mail.send(msg)
+
+
+@app.route('/reset-password', methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = UserAccount.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash("An email has been sent with instructions to submit your password", "info")
+        return redirect(url_for('login'))
+    return render_template('reset_request.html', title="Reset Password", form=form)
+
+@app.route('/reset-password/<token>', methods=['GET', 'POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
+    user = UserAccount.verify_reset_token(token)
+    if user is None:
+        flash("That is an invalid token or it has expired.", 'warning')
+        return redirect(url_for('reset_request'))
+
+    form = PasswordResetForm()
+    if form.validate_on_submit():
+
+        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_pw
+        db.session.commit()
+
+        flash(f"Account password has been updated. You may login.", 'success')
+        return redirect(url_for('login'))
+    return render_template("reset_password.html", title="Confirm Password Reset", form=form)
 
 
 @app.route('/docs')

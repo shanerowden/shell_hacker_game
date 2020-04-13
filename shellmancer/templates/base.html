@@ -7,23 +7,13 @@
   {% else %}
     <title>Shellmancer | {{title}}</title>
   {% endif %}
-
-  <link href="static/css/slate.css" type="text/css" rel="stylesheet">
-  <link href="static/css/bullstrap.css" type="text/css" rel="stylesheet">
-  <link href="static/css/responsive.css" type="text/css" rel="stylesheet">
-  <link href="static/css/ripped_google_fonts.css" type="text/css" rel="stylesheet">
-  <link href="static/css/style.css" type="text/css" rel="stylesheet">
-
+  <link href="{{ url_for('static', filename='css/slate.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/bullstrap.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/responsive.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/ripped_google_fonts.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet">
 </head>
 <body>
-
-<!--&lt;!&ndash; Cover Image.  &ndash;&gt;-->
-<!--<div class="wrapper">-->
-<!--  <div class="inner">-->
-<!--    &lt;!&ndash; <img src="img/test.svg" width="100%" class="fixed-top"> &ndash;&gt;-->
-<!--  </div>-->
-<!--</div>-->
-<!--&lt;!&ndash;  &ndash;&gt;-->
 
 <!-- Top Menubar Element -->
 {% if current_user.is_authenticated %}
@@ -34,11 +24,8 @@
 <!-- Binary Heading Piece -->
 {% include 'header.html' %}
 
-
 <!-- Div Creates the Outer Margins on the left and right at full size viewport -->
 <div class="container" width="100%">
-
-
 
   <!-- The inner background behind the side bar and the content space -->
   <div class="container-fluid vertical-wrap">
@@ -46,26 +33,16 @@
     <div id="leftbar-alt">
           {% block leftbaralt %}{% endblock %}
     </div>
-
     <div class="row">
-
-
-
       <!-- Old Flash Message Spot -->
-
       <!-- Leftbar -->
       <div id="leftbar"
            class="col-xs-0 col-sm-0 col-md-0 col-lg-3 col-xl-3">
         {% block sidebar %}{% endblock %}
       </div>
-
       <!-- Content -->
-
       <div id="contentbar"
            class="col-xs-0 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-
-
-
          <!--Flash Messages-->
 <!--        <div class="card">-->
 <!--         <div class="card-body">-->
@@ -86,47 +63,33 @@
                   {% endif %}
                 {% endwith %}
             </div>
-
         <div id="rightbar-alt" class="mt-3 mb-3">
           {% block rightbaralt %}{% endblock %}
         </div>
-
     <!--  Next Card  -->
          {% block content %}{% endblock %}
-
-
-
       </div>
-
 <!-- Rightbar -->
       <div id="rightbar"
            class="col-xs-0 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-
         {% block buttons %}{% endblock %}
-
       </div>
     </div>
   </div>
 </div>
-
-
 <!-- Bottom Fixed -->
 <div class="fixed-bottom">
   <!-- Vanilla Terminal  -->
   <div id="vanilla-terminal" class="default-off"></div>
-
-  </div>
+<!--  </div>-->
 </div>
-
 <!--  -->
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
-
-  <script src="static/js/jquery.min.js"></script>
-  <script src="static/js/popper.min.js"></script>
-  <script src="static/js/bootstrap.min.js"></script>
-
-  <script src="static/js/vanilla-terminal.js"></script>
-  <script src="static/js/my-script.js"></script>
-  <script src="static/js/toggle-term.js"></script>
+  <script src="{{ url_for('static', filename='js/vanilla-terminal.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/my-script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/toggle-term.js') }}"></script>
 </body>
 </html>

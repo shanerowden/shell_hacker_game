@@ -82,7 +82,7 @@ class UserSettingsForm(FlaskForm):
                                     Email()],
                         render_kw={"placeholder": email_name})
     image_file = FileField('Profile Pic', validators=[FileAllowed(['jpg', 'png'])])
-    agree_over_18 = BooleanField("Agree to Content that is 18+?")
+    is_over_18 = BooleanField("Agree to Content that is 18+?")
 
     submit = SubmitField('Update')
 
@@ -100,11 +100,30 @@ class UserSettingsForm(FlaskForm):
             if user:
                 raise ValidationError(f'Account already registered with {email.data}')
 
-    # id = db.Column(db.Integer, primary_key=True)
-    # user_name = db.Column(db.String(120), nullable=True)
-    # email = db.Column(db.String(120), unique=True, nullable=False)
-    # image_file = db.Column(db.String(20), nullable=False, default="static/default.jpg")
-    # password = db.Column(db.String(60), nullable=False)
-    # account_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    # agree_over_18 = db.Column(db.Boolean, default=False)
-    # is_admin = db.Column(db.Boolean, default=False)
+
+class RequestResetForm(FlaskForm):
+    email = StringField(email_name,
+                        validators=[DataRequired(),
+                                    Length(min=4, max=32),
+                                    Email()],
+                        render_kw={"placeholder": email_name})
+
+    submit = SubmitField('Request Password Reset')
+
+
+    def validate_email(self, email):
+        user = UserAccount.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('There is no account with that email. Register first.')
+
+class PasswordResetForm(FlaskForm):
+    password = PasswordField(password_name,
+                             validators=[DataRequired(),
+                                         Length(min=8)],
+                             render_kw={"placeholder": password_name})
+
+    password_confirm = PasswordField(password_confirm_name,
+                                     validators=[DataRequired(),
+                                                 EqualTo('password')],
+                                     render_kw={"placeholder": password_confirm_name})
+    submit = SubmitField('Reset Password')

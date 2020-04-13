@@ -55,10 +55,10 @@
 
 <!--    Agree Over 18    -->
         <div class="form-group">
-          {{ form.agree_over_18.label() }}
-          {{ form.agree_over_18(class="custom-control custom-checkbox") }}
-          {% if form.agree_over_18.errors %}
-            {% for error in form.agree_over_18.errors %}
+          {{ form.is_over_18.label() }}
+          {{ form.is_over_18(class="custom-control custom-checkbox") }}
+          {% if form.is_over_18.errors %}
+            {% for error in form.is_over_18.errors %}
               <span class="text-danger">{{ error }}</span></br>
             {% endfor %}
           {% endif %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}{% endblock %}
+{% block leftbaralt %}{% endblock %}
+{% block rightbaralt %}{% endblock %}
+
+{% block content %}
+
+<!--"1"-->
+  <div>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Reset Password</legend>
+
+        <!--   Email     -->
+        <div class="form-group">
+          {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.email.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.email(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+
+        <!--   Submit   -->
+        <div class="form-inline float-left" style="width:57%;">
+          {{ form.submit(class="btn btn-lg btn-block btn-purple") }}
+        </div>
+
+      </fieldset>
+    </form>
+
+  </div>
+
+<!--"2"-->
+
+{% endblock %}
+
+{% block buttons %}{% endblock %}

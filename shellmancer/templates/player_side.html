@@ -11,14 +11,17 @@
 <!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
 <!--  </div>-->
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"><strong>18+ Content:</strong> {{ current_user.agree_over_18 }}</li>
+    <li class="list-group-item"><strong>18+ Content:</strong> {{ current_user.is_over_18 }}</li>
+  </ul>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Verified:</strong> {{ current_user.is_verified }}</li>
   </ul>
 <!--  <div class="card-body">-->
 <!--    <a href="#" class="card-link">Card link</a>-->
 <!--    <a href="#" class="card-link">Another link</a>-->
 <!--  </div>-->
   <div class="card-footer text-muted">
-    {{ current_user.account_created }}
+    {{ current_user.date_created }}
   </div>
 </div>
 <!--<div class="card">-->

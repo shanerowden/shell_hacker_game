@@ -13,16 +13,6 @@
 }
 
 
-.sidebar {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-}
-
-/*  */
-
-
 
 body {
     margin: 0;
