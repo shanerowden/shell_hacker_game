@@ -1,7 +1,7 @@
 import os
 import secrets
 from flask import render_template, flash, redirect, url_for, request
-from shellmancer import app, db, bcrypt, mail
+from shellmancer import app, db, ph
 from shellmancer.forms import (
     RegisterForm, LoginForm, NewCampaignForm, UserSettingsForm, RequestResetForm, PasswordResetForm, RequestVerifyForm
 )
@@ -9,6 +9,7 @@ from shellmancer.models import UserAccount, SinglePlayerCampaign
 from flask_login import login_user, current_user, logout_user, login_required
 from PIL import Image
 from shellmancer.mailing import send_verify_email, send_reset_email
+from argon2.exceptions import InvalidHash
 
 
 @app.route('/')
@@ -27,7 +28,7 @@ def register():
     form = RegisterForm()
 
     if form.validate_on_submit():
-        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_pw = ph.hash(form.password.data)
         user = UserAccount(email=form.email.data, password=hashed_pw)
 
         db.session.add(user)
@@ -99,12 +100,12 @@ def login():
 
     if form.validate_on_submit():
         user = UserAccount.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
-
-        else:
+        try:
+            if user and ph.verify(user.password, form.password.data):
+                login_user(user, remember=form.remember.data)
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else redirect(url_for('home'))
+        except InvalidHash:
             flash('Login Unsuccessful. Please check email and password.', 'danger')
 
     return render_template("login.html",
@@ -252,7 +253,7 @@ def reset_password(token):
     form = PasswordResetForm()
     if form.validate_on_submit():
 
-        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_pw = ph.hash(form.password.data)
         user.password = hashed_pw
         db.session.commit()
         flash(f"Account password has been updated. You may login.", 'success')

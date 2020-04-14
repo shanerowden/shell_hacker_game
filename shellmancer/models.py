@@ -22,7 +22,7 @@ class UserAccount(db.Model, UserMixin):
     user_name = db.Column(db.String(120), nullable=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(40), nullable=False, default="default.jpg")
-    password = db.Column(db.String(60), nullable=False)
+    password = db.Column(db.String(77), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_confirmed = db.Column(db.DateTime, nullable=True)
     is_over_18 = db.Column(db.Boolean, default=False)
