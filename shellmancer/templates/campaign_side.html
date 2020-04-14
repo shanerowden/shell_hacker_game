@@ -1,0 +1,35 @@
+<div class="card mb-3">
+  <h3 class="card-header">GAMEMASTER</h3>
+  <div class="card-body">
+    <h5 class="card-title">{{ campaign.gamemaster.user.user_name }}</h5>
+    <h6 class="card-subtitle text-muted">{{ current_user.email }}</h6>
+  </div>
+  <img class="profile-pic rounded-circle center mb-3"
+       src="static/img/pfp/{{ current_user.image_file }}"
+       alt="{{ current_user.email }} Profile Picture">
+<!--  <div class="card-body">-->
+<!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--  </div>-->
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>18+ Content:</strong> {{ current_user.is_over_18 }}</li>
+  </ul>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Verified:</strong> {{ current_user.is_verified }}</li>
+  </ul>
+<!--  <div class="card-body">-->
+<!--    <a href="#" class="card-link">Card link</a>-->
+<!--    <a href="#" class="card-link">Another link</a>-->
+<!--  </div>-->
+  <div class="card-footer text-muted">
+    {{ current_user.date_created }}
+  </div>
+</div>
+<!--<div class="card">-->
+<!--  <div class="card-body">-->
+<!--    <h4 class="card-title">Card title</h4>-->
+<!--    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+<!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--    <a href="#" class="card-link">Card link</a>-->
+<!--    <a href="#" class="card-link">Another link</a>-->
+<!--  </div>-->
+<!--</div>-->

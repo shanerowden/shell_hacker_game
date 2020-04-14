@@ -7,23 +7,15 @@
 
 
 {% block content %}
-<div class="card">
- <div class="card-body">
-   <h2>Your Campaigns</h2>
-   <hr>
-
-   {% for campaign in campaigns %}
-   <a href="">{{ campaign.campaign_name }}</a><Br>
-     {{ campaign.campaign_descrip }}<br><br>
-   {% endfor %}
- </div>
-</div>
+  {% include 'campaign_list.html' %}
 {% endblock %}
 
 
 
 {% block buttons %}
-<div class="btn btn-success">
-  <a href="{{ url_for('new_campaign') }}">New Campaign</a>
-</div>
+<a href="{{ url_for('new_campaign') }}">
+  <div class="btn btn-success">
+    New Campaign
+  </div>
+</a>
 {% endblock %}

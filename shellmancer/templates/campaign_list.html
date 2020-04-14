@@ -1,0 +1,25 @@
+<div class="card">
+ <div class="card-body">
+   <h2><span class="text-info">Campaigns</span> | {{ context }}</h2>
+    </div>
+</div>
+<hr>
+{% for campaign in campaigns %}
+  <div class="card">
+    <div class="card-body">
+      <h4>
+        <a class="text-success" href="{{ url_for('campaign_profile', camp_id=campaign.id) }}">
+          {{campaign.name}}
+        </a>
+      </h4>
+       <small>
+         <strong>Gamemaster:</strong>
+          <em>{{ campaign.gamemaster.user.user_name }}</em> </br>
+         <strong>Players:</strong>
+  <!--        <em></em> </br>-->
+       </small>
+      {{ campaign.descrip }} </br>
+    </div>
+  </div>
+<hr>
+{% endfor %}

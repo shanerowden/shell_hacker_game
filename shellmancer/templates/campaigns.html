@@ -5,19 +5,7 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="card">
- <div class="card-body">
-   <h2>All Campaigns</h2>
-   <hr>
-   {% for campaign in campaigns %}
-   <h4 class="text-success"><a href="">{{ campaign.campaign_name }}</a></h4> by
-        {{ campaign.gamemaster.user.user_name }} </br>
-       {{ campaign.campaign_descrip }} </br></br>
-   {% endfor %}
- </div>
-</div>
-
+  {% include 'campaign_list.html' %}
 {% endblock %}
 
 {% block buttons %}

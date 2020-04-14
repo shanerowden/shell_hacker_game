@@ -27,6 +27,7 @@ class UserAccount(db.Model, UserMixin):
     is_over_18 = db.Column(db.Boolean, default=False)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     is_verified = db.Column(db.Boolean, nullable=False, default=False)
+    is_email_public = db.Column(db.Boolean, nullable=False, default=False)
 
     player = db.relationship('PlayerProfile', uselist=False, back_populates="user")
     gamemaster = db.relationship('GameMasterProfile', uselist=False, back_populates="user")
@@ -102,14 +103,14 @@ class GameMasterProfile(db.Model):
 class CharacterSheet(db.Model):
     """
     CharacterSheet M-1 PlayerProfile
-    CharacterSheetr 1-1 SinglePlayerCampaign
+    CharacterSheet 1-1 SinglePlayerCampaign
     """
     __tablename__ = 'character_sheet'
 
     id = db.Column(db.Integer, primary_key=True)
     player_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=False)
 
-    player = db.relationship('PlayerProfile', back_populates='character_sheet')
+    player = db.relationship('PlayerProfile', back_populates='characters')
 
 
 class SinglePlayerCampaign(db.Model):
@@ -125,4 +126,4 @@ class SinglePlayerCampaign(db.Model):
     gamemaster_id = db.Column(db.Integer, db.ForeignKey('gamemaster.id'), nullable=False)
     character_sheet_id = db.Column(db.Integer, db.ForeignKey('character_sheet.id'))
 
-    gamemaster = db.relationship('GameMasterProfile', back_populates="campaign")
+    gamemaster = db.relationship('GameMasterProfile', back_populates="campaigns")

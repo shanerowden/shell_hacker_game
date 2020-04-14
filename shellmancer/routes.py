@@ -134,9 +134,9 @@ def player_profile():
 @app.route('/gamemaster')
 @login_required
 def gamemaster_profile():
-    if current_user.gamemaster.gamemaster_access > 0:
-        campaigns = SinglePlayerCampaign.query.filter_by(gamemaster_id=current_user.gamemaster.gamemaster_id)
-        return render_template("gamemaster.html", campaigns=campaigns)
+    if current_user.gamemaster.access > 0:
+        campaigns = SinglePlayerCampaign.query.filter_by(gamemaster_id=current_user.gamemaster.id).all()
+        return render_template("gamemaster.html", campaigns=campaigns, context=f"by {current_user.user_name}")
     else:
         flash("This user is not a gamemaster", 'info')
         return redirect(url_for('player_profile'))
@@ -145,11 +145,11 @@ def gamemaster_profile():
 @app.route('/gamemaster-make')
 @login_required
 def make_gamemaster():
-    if current_user.gamemaster.gamemaster_access > 0:
+    if current_user.gamemaster.access > 0:
         flash("User is already a game master", 'info')
         return redirect(url_for('gamemaster_profile'))
     else:
-        current_user.gamemaster.gamemaster_access = 1
+        current_user.gamemaster.access = 1
         db.session.add(current_user)
         db.session.commit()
         flash("{{current_user.email}} set to gamemaster.")
@@ -159,14 +159,16 @@ def make_gamemaster():
 @app.route('/new_campaign', methods=['GET', 'POST'])
 @login_required
 def new_campaign():
-    if not current_user.gamemaster.gamemaster_access > 0:
+    if not current_user.gamemaster.access > 0:
         return redirect(url_for('player_profile'))
     else:
         form = NewCampaignForm()
         if form.validate_on_submit():
-            campaign = SinglePlayerCampaign(gamemaster_id=current_user.gamemaster.gamemaster_id,
-                                            campaign_name=form.title.data,
-                                            campaign_descrip=form.descrip.data)
+            campaign = SinglePlayerCampaign(id=current_user.gamemaster.id,
+                                            name=form.title.data,
+                                            descrip=form.descrip.data,
+                                            gamemaster_id=current_user.gamemaster.id,
+                                            )
             db.session.add(campaign)
             db.session.commit()
             return redirect(url_for('gamemaster_profile'))
@@ -219,12 +221,24 @@ def user_settings():
                            title=f"Settings for {current_user.email}",
                            form=form)
 
-@app.route('/campaigns')
+@app.route('/campaign')
 def all_campaigns():
     campaigns = SinglePlayerCampaign.query.all()
     campaigns.reverse()
+
     return render_template('campaigns.html',
-                           title="All Campaigns", campaigns=campaigns)
+                           title="All Campaigns", campaigns=campaigns, context="ALL")
+
+
+@app.route('/campaign/<camp_id>')
+def campaign_profile(camp_id):
+    try:
+        campaign = SinglePlayerCampaign.query.get(camp_id)
+    except:
+        return redirect(url_for('all_campaigns'))
+
+    return render_template('campaign_profile.html',
+                           title=f"Campaign | {campaign.name}", campaign=campaign)
 
 
 @app.route('/reset-password', methods=['GET', 'POST'])
