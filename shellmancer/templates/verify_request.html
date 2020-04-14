@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}{% endblock %}
+{% block leftbaralt %}{% endblock %}
+{% block rightbaralt %}{% endblock %}
+
+{% block content %}
+
+<!--"1"-->
+  <div>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Verify Account</legend>
+
+        <!--   Submit   -->
+        <div class="form-inline float-left" style="width:57%;">
+          {{ form.submit(class="btn btn-lg btn-block btn-purple") }}
+        </div>
+
+      </fieldset>
+    </form>
+
+  </div>
+
+<!--"2"-->
+
+{% endblock %}
+
+{% block buttons %}{% endblock %}

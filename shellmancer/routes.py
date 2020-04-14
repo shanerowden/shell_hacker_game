@@ -3,20 +3,20 @@ import secrets
 from flask import render_template, flash, redirect, url_for, request
 from shellmancer import app, db, bcrypt, mail
 from shellmancer.forms import (
-    RegisterForm, LoginForm, NewCampaignForm, UserSettingsForm, RequestResetForm, PasswordResetForm
+    RegisterForm, LoginForm, NewCampaignForm, UserSettingsForm, RequestResetForm, PasswordResetForm, RequestVerifyForm
 )
 from shellmancer.models import UserAccount, SinglePlayerCampaign
 from flask_login import login_user, current_user, logout_user, login_required
 from PIL import Image
-from flask_mail import Message
+from shellmancer.mailing import send_verify_email, send_reset_email
 
 
-# Routes
 @app.route('/')
 def home():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
     return render_template('index.html')
+
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -25,20 +25,69 @@ def register():
         return redirect(url_for('home'))
 
     form = RegisterForm()
-    if form.validate_on_submit():
 
+    if form.validate_on_submit():
         hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = UserAccount(email=form.email.data, password=hashed_pw)
 
         db.session.add(user)
         db.session.commit()
 
-        flash(f"Account created for {form.email.data}.", 'success')
+        send_verify_email(user)
+
+        flash(f"Account created for {form.email.data}"
+              + "Check your email to verify account for full functionality. You may login now.", 'success')
         return redirect(url_for('login'))
 
     return render_template("register.html",
                            title="Register",
                            form=form)
+
+
+
+@app.route('/verify', methods=['GET', 'POST'])
+@login_required
+def verify_request():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+
+    if current_user.is_verified:
+        flash('This account is already verified.', 'info')
+        return redirect(url_for('player_profile'))
+
+    form = RequestVerifyForm()
+    if form.validate_on_submit():
+        user = UserAccount.query.filter_by(email=current_user.email).first()
+        send_verify_email(user)
+        flash("An email has been sent with instructions to verify your account", "info")
+        return redirect(url_for('player_profile'))
+
+    return render_template('verify_request.html', title="Verify Account", form=form)
+
+
+
+@app.route('/verify/<token>')
+def verify_success(token):
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+
+    if current_user.is_verified:
+        flash("Account is already verified", 'info')
+        return redirect(url_for('player_profile'))
+
+    user = UserAccount.verify_token(token)
+    if user is None:
+        flash("That is an invalid token or it has expired.", 'warning')
+        return redirect(url_for('verify_request'))
+
+    if not user.is_verified:
+        user.is_verified = True
+        db.session.commit()
+        flash(f"Your account was successfully verified.", 'success')
+
+        return redirect(url_for('login'))
+    return render_template("reset_password.html", title="Confirm Password Reset", form=form)
+
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -47,8 +96,8 @@ def login():
         return redirect(url_for('player_profile'))
 
     form = LoginForm()
-    if form.validate_on_submit():
 
+    if form.validate_on_submit():
         user = UserAccount.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
@@ -62,6 +111,7 @@ def login():
                            title="Login",
                            form=form)
 
+
 @app.route('/logout')
 def logout():
     if current_user.is_authenticated:
@@ -71,6 +121,7 @@ def logout():
 
     else:
         return redirect(url_for('home'))
+
 
 
 @app.route('/player')
@@ -102,6 +153,7 @@ def make_gamemaster():
         db.session.commit()
         flash("{{current_user.email}} set to gamemaster.")
         return redirect(url_for('gamemaster_profile'))
+
 
 @app.route('/new_campaign', methods=['GET', 'POST'])
 @login_required
@@ -143,9 +195,15 @@ def save_picture(form_picture):
 def user_settings():
     form = UserSettingsForm()
     if form.validate_on_submit():
+
         if form.image_file.data:
             picture_file = save_picture(form.image_file.data)
             current_user.image_file = picture_file
+
+        if form.email.data != current_user.email:
+            current_user.is_verified = False
+            flash('Your verified status is now pending verification of the new email.', 'warning')
+
         current_user.user_name = form.user_name.data
         current_user.email = form.email.data
         current_user.is_over_18 = form.is_over_18.data
@@ -168,15 +226,6 @@ def all_campaigns():
                            title="All Campaigns", campaigns=campaigns)
 
 
-def send_reset_email(user):
-    token = user.get_reset_token()
-    msg = Message("Password Reset Request From Shellmancer",
-                  sender=os.environ['MAIL_USERNAME'], recipients=[user.email])
-    msg.body = "To reset your password, visit the following link:" \
-        + f"{url_for('reset_token', token=token, _external=True)}"
-    mail.send(msg)
-
-
 @app.route('/reset-password', methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
@@ -189,12 +238,13 @@ def reset_request():
         return redirect(url_for('login'))
     return render_template('reset_request.html', title="Reset Password", form=form)
 
+
 @app.route('/reset-password/<token>', methods=['GET', 'POST'])
-def reset_token(token):
+def reset_password(token):
     if current_user.is_authenticated:
         return redirect(url_for('home'))
 
-    user = UserAccount.verify_reset_token(token)
+    user = UserAccount.verify_token(token)
     if user is None:
         flash("That is an invalid token or it has expired.", 'warning')
         return redirect(url_for('reset_request'))
@@ -205,8 +255,13 @@ def reset_token(token):
         hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user.password = hashed_pw
         db.session.commit()
-
         flash(f"Account password has been updated. You may login.", 'success')
+
+        if not user.is_verified:
+            user.is_verified = True
+            db.session.commit()
+            flash(f"Your account was verified in the process of password resetting.", 'success')
+
         return redirect(url_for('login'))
     return render_template("reset_password.html", title="Confirm Password Reset", form=form)
 
@@ -214,3 +269,5 @@ def reset_token(token):
 @app.route('/docs')
 def docs():
     return render_template("docs.html")
+
+

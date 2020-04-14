@@ -127,3 +127,6 @@ class PasswordResetForm(FlaskForm):
                                                  EqualTo('password')],
                                      render_kw={"placeholder": password_confirm_name})
     submit = SubmitField('Reset Password')
+
+class RequestVerifyForm(FlaskForm):
+    submit = SubmitField('Send Verification Email')

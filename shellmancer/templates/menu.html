@@ -10,14 +10,20 @@
 
   <div class="dropdown-menu bg-dark">
     <div id="account-menu-div">
+      {% if not current_user.is_verified %}
+        <a id="account-menu-get-verified" class="dropdown-item" href="{{ url_for('verify_request') }}">
+          <strong><span class="text-warning">Get Verified</span></strong>
+        </a>
+      {% endif %}
+
       <a id="account-menu-player-profile" class="dropdown-item" href="{{ url_for('player_profile') }}">
         <span>Player Profile</span>
       </a>
 
       {% if current_user.gamemaster.gamemaster_access > 0 %}
-      <a id="account-menu-gm-profile" class="dropdown-item inactive" href="{{ url_for('gamemaster_profile') }}">
-        <span>GameMaster Profile</span>
-      </a>
+        <a id="account-menu-gm-profile" class="dropdown-item inactive" href="{{ url_for('gamemaster_profile') }}">
+          <span>GameMaster Profile</span>
+        </a>
       {% endif %}
 
       <a id="account-menu-settings" class="dropdown-item" href="{{ url_for('user_settings') }}">
