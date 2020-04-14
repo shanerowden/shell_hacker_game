@@ -210,6 +210,7 @@ def user_settings():
         current_user.user_name = form.user_name.data
         current_user.email = form.email.data
         current_user.is_over_18 = form.is_over_18.data
+        current_user.is_email_public = form.is_email_public.data
         db.session.commit()
         flash("Your account has been updated", 'success')
         return redirect(url_for('user_settings'))
@@ -217,6 +218,7 @@ def user_settings():
         form.user_name.data = current_user.user_name
         form.email.data = current_user.email
         form.is_over_18.data = current_user.is_over_18
+        form.is_email_public.data = current_user.is_email_public
     return render_template('settings.html',
                            title=f"Settings for {current_user.email}",
                            form=form)
@@ -238,7 +240,8 @@ def campaign_profile(camp_id):
         return redirect(url_for('all_campaigns'))
 
     return render_template('campaign_profile.html',
-                           title=f"Campaign | {campaign.name}", campaign=campaign)
+                           title=f"Campaign | {campaign.name}", campaign=campaign,
+                           pfp=f"img/pfp/{campaign.gamemaster.user.image_file}")
 
 
 @app.route('/reset-password', methods=['GET', 'POST'])

@@ -9,5 +9,17 @@
 {% endblock %}
 
 {% block buttons %}
-
+{% if current_user.id == campaign.gamemaster.user.id %}
+  <a href="{{ url_for('new_campaign') }}">
+    <div class="btn btn-danger">
+      Delete Campaign
+    </div>
+  </a>
+{% else %}
+  <a href="{{ url_for('new_campaign') }}">
+      <div class="btn btn-info">
+        Make Character
+      </div>
+  </a>
+{% endif %}
 {% endblock %}

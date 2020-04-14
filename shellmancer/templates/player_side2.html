@@ -1,6 +1,11 @@
-<div class="card mb-3">
-  <h3 class="card-header">PLAYER</h3>
-  <div class="card-body">
+<nav class="navbar navbar-dark bg-primary">
+  <span class="navbar-brand text-success font-orbitron">PLAYER</span>
+  <button class="navbar-toggler bg-dark m-1" type="button" data-toggle="collapse" data-target="#navbarColor01"
+          aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse border border-light p-1 bg-dark" id="navbarColor01">
     {% if current_user.user_name %}
       <h5 class="card-title">{{ current_user.user_name }}</h5>
     {% else %}
@@ -11,7 +16,6 @@
     {% else %}
       <h6 class="card-subtitle text-muted"><em>email hidden</em></h6>
     {% endif %}
-  </div>
   <img class="profile-pic rounded-circle center mb-3"
        src="static/img/pfp/{{ current_user.image_file }}"
        alt="{{ current_user.email }} Profile Picture">
@@ -27,12 +31,26 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><strong>Public Email:</strong> {{ current_user.is_email_public }}</li>
   </ul>
-<!--  <div class="card-body">-->
-<!--    <a href="#" class="card-link">Card link</a>-->
+      <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Created:</strong>  {{ current_user.date_created }}</li>
+  </ul>
+
+
+  </div>
+
+</nav>
+
+
+<div class="card mb-3">
+  <h3 class="card-header">PLAYER</h3>
+
+
+  <div class="card-body">
+<!--    <small><a href="{{ url_for('user_settings') }}" class="card-link">Settings</a></small>-->
 <!--    <a href="#" class="card-link">Another link</a>-->
-<!--  </div>-->
+  </div>
   <div class="card-footer text-muted">
-    {{ current_user.date_created }}
+
   </div>
 </div>
 <!--<div class="card">-->

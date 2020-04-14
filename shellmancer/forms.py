@@ -83,6 +83,7 @@ class UserSettingsForm(FlaskForm):
                         render_kw={"placeholder": email_name})
     image_file = FileField('Profile Pic', validators=[FileAllowed(['jpg', 'png'])])
     is_over_18 = BooleanField("Agree to Content that is 18+?")
+    is_email_public = BooleanField("Share your email")
 
     submit = SubmitField('Update')
 

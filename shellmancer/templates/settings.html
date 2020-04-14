@@ -52,7 +52,7 @@
             {% endfor %}
           {% endif %}
         </div>
-
+<div class="row">
 <!--    Agree Over 18    -->
         <div class="form-group">
           {{ form.is_over_18.label() }}
@@ -64,6 +64,17 @@
           {% endif %}
         </div>
 
+        <!--    Share Email    -->
+        <div class="form-group">
+          {{ form.is_email_public.label() }}
+          {{ form.is_email_public(class="custom-control custom-checkbox") }}
+          {% if form.is_email_public.errors %}
+            {% for error in form.is_email_public.errors %}
+              <span class="text-danger">{{ error }}</span></br>
+            {% endfor %}
+          {% endif %}
+        </div>
+</div>
         <div>
           {{ form.submit(class="btn btn-block btn-purple") }}
         </div>
