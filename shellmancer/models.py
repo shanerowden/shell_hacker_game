@@ -12,9 +12,8 @@ def load_user(user_id):
 # Models
 class UserAccount(db.Model, UserMixin):
     """
-    Account Holding Base User.
-    This class is the bassis both GameMasterProfile and PlayerProfile.
-    It should be a strictly one to one relationship.
+    UserAccount 1-1 PlayerProfile
+    UserAccount 1-1 GameMasterProfile
     """
     __tablename__ = 'user'
 
@@ -56,8 +55,8 @@ class UserAccount(db.Model, UserMixin):
         db.session.commit()
 
         # Apply a player/gamemaster profile to users on creation
-        new_player = PlayerProfile(player_id=self.id)
-        new_gm = GameMasterProfile(gamemaster_id=self.id)
+        new_player = PlayerProfile(id=self.id)
+        new_gm = GameMasterProfile(id=self.id)
 
         # Commit to DB
         db.session.add(new_player)
@@ -68,55 +67,62 @@ class UserAccount(db.Model, UserMixin):
 
 class PlayerProfile(db.Model):
     """
-    Each user gets a player profile with which to make characters
-    and save progress in various Campaigns.
+    PlayerProfile 1-M CharacterSheet
+    UserAccount 1-1 PlayerProfile
     """
     __tablename__ = 'player'
 
-    player_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, primary_key=True)
-    player_access = db.Column(db.Integer, nullable=False, default=1)
+    id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, primary_key=True)
+    access = db.Column(db.Integer, nullable=False, default=1)
+
     user = db.relationship('UserAccount', back_populates="player")
-    # characters = db.relationship('CharacterSheet', backref="player")
+    characters = db.relationship('CharacterSheet', back_populates="player")
 
     def __repr__(self):
-        return f"PlayerProfile({self.player_id}, {self.user})"
+        return f"PlayerProfile({self.id}, {self.user})"
 
 
 class GameMasterProfile(db.Model):
     """
-    Can create campaigns, view characters playing their campaigns...
-    For now, unavailable except to developer. Both this class and the PlayerProfile are created on
-    New User init, but their access prolperties vary.
+    UserAccount 1-1 PlayerProfile
+    GameMasterProfile 1-M SinglePlayerCampaign
     """
     __tablename__ = 'gamemaster'
 
-    gamemaster_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, primary_key=True)
-    gamemaster_access = db.Column(db.Integer, nullable=False, default=0)
+    id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, primary_key=True)
+    access = db.Column(db.Integer, nullable=False, default=0)
+
     user = db.relationship('UserAccount', back_populates="gamemaster")
-    campaigns = db.relationship('SinglePlayerCampaign', backref="gamemaster")
+    campaigns = db.relationship('SinglePlayerCampaign', back_populates="gamemaster")
 
     def __repr__(self):
-        return f"GameMasterProfile({self.gamemaster_id}, {self.user})"
+        return f"GameMasterProfile({self.id}, {self.user})"
 
-
+#
 class CharacterSheet(db.Model):
     """
-
+    CharacterSheet M-1 PlayerProfile
+    CharacterSheetr 1-1 SinglePlayerCampaign
     """
     __tablename__ = 'character_sheet'
 
-    character_sheet_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=False)
+
+    player = db.relationship('PlayerProfile', back_populates='character_sheet')
 
 
 class SinglePlayerCampaign(db.Model):
     """
-    Created by one user with GameMasterProfile
-    Anyone with PlayerProfile may make a character to play the campaign.
+    CharacterSheetr 1-1 SinglePlayerCampaign
+    GameMasterProfile 1-M SinglePlayerCampaign
     """
     __tablename__ = 'campaign'
 
-    campaign_id = db.Column(db.Integer, primary_key=True)
-    campaign_name = db.Column(db.String(120), nullable=False)
-    campaign_descrip = db.Column(db.String(250), nullable=False)
-    gamemaster_id = db.Column(db.Integer, db.ForeignKey('gamemaster.gamemaster_id'), nullable=False)
-    character_sheet_id = db.Column(db.Integer, db.ForeignKey('character_sheet.character_sheet_id'))
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
+    descrip = db.Column(db.String(250), nullable=False)
+    gamemaster_id = db.Column(db.Integer, db.ForeignKey('gamemaster.id'), nullable=False)
+    character_sheet_id = db.Column(db.Integer, db.ForeignKey('character_sheet.id'))
+
+    gamemaster = db.relationship('GameMasterProfile', back_populates="campaign")
