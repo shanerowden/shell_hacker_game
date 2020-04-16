@@ -278,8 +278,14 @@ def campaign_profile(camp_id):
     except:
         return redirect(url_for('all_campaigns'))
 
+    characters = CharacterSheet.query.filter_by(
+        campaign_id=camp_id, player_id=current_user.player.id).all()
+
+    if len(characters) < 1:
+        flash("You do not have any characters for this campaign yet. Make one!", "info")
+
     return render_template('campaign_profile.html',
-                           title=f"Campaign | {campaign.name}", campaign=campaign,
+                           title=f"Campaign | {campaign.name}", campaign=campaign, character_count=len(characters),
                            pfp=f"img/pfp/{campaign.gamemaster.user.image_file}")
 
 
@@ -299,6 +305,14 @@ def campaign_delete(camp_id):
     return redirect(url_for('campaign_profile', camp_id=camp_id))
 
 
+
+@app.route('/campaign/<camp_id>/new')
+@login_required
+def new_character(camp_id):
+    campaign = SinglePlayerCampaign.query.get(camp_id)
+    return render_template("character_new.html", campaign=campaign)
+
+
 @app.route('/campaign/<camp_id>/characters/')
 @login_required
 def campaign_characters(camp_id):
@@ -308,11 +322,6 @@ def campaign_characters(camp_id):
         flash('This campaign does not exist.', 'info')
         return redirect(url_for('all_campaigns'))
 
-    characters = CharacterSheet.query.filter_by(
-        campaign_id=camp_id, player_id=current_user.player.id).all()
-
-    if len(characters) < 1:
-        flash("You do not have any characters for this campaign yet. Make one!", "info")
 
     return render_template("campaign_characters.html", characters=characters,
                            title=f"Characters for {campaign.name}", campaign=campaign)

@@ -1,14 +1,47 @@
-{% if current_user.id == campaign.gamemaster.user.id %}
-<a class="btn btn-info" href="{{ url_for('campaign_settings', camp_id=campaign.id) }}">Edit</a>
 
-<button type="button" class="btn btn-danger" title="" data-container="body"
-        data-toggle="popover" data-placement="right" data-trigger="focus"
-        data-content="Are you sure you want to delete?</br>This cannot be undone.</br></br><a class='text-danger text-right' href='{{ url_for('campaign_delete', camp_id=campaign.id) }}'>Please delete now.</a>"
-        data-original-title="Delete Campaign?">Delete</button>
-{% else %}
-  <a href="{{ url_for('campaign_characters', camp_id=campaign.id) }}">
-      <div class="btn btn-purple">
-       Characters
-      </div>
-  </a>
-{% endif %}
+<div class="container mb-3">
+  <div class="row center">
+
+    {% if character_count < 1 %}
+      <a href="#">
+          <div class="btn btn-success" data-toggle="modal" data-target="#characterWizard1">
+            New Character
+          </div>
+      </a>
+    {% else %}
+        <a href="#">
+          <div class="btn btn-purple" data-toggle="modal" data-target="#characterWizard1">
+            Your Characters
+          </div>
+      </a>
+    {% endif %}
+
+  </div>
+</div>
+
+
+<div class="nav">
+  <a href="#one" data-toggle="tab" class="btn btn-primary nav-link active">Introduction</a>
+  <a href="#two" data-toggle="tab" class="btn btn-primary nav-link">Create Character</a>
+</div>
+
+<div class="container">
+  <div class="row center">
+
+    <div class="btn-group-sm center mt-3">
+      {% if current_user.id == campaign.gamemaster.user.id %}
+        <a class="btn btn-info mr-4" href="{{ url_for('campaign_settings', camp_id=campaign.id) }}">Edit</a>
+
+        <button type="button" class="btn btn-danger" title="" data-container="body"
+                data-toggle="popover" data-placement="right" data-trigger="focus"
+                data-content="Are you sure you want to delete?</br>This cannot be undone.</br></br><a class='text-danger text-right' href='{{ url_for('campaign_delete', camp_id=campaign.id) }}'>Please delete now.</a>"
+                data-original-title="Delete Campaign?">Delete</button>
+
+      {% endif %}
+
+
+    </div>
+  </div>
+</div>
+
+{% include 'character_wizard_modals.html' %}

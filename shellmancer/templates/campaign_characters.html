@@ -35,85 +35,17 @@
    <hr>
    <div class="tab-content">
     <div id="one" class="card-text tab-pane fade show active">
-      <p>It’s present day -- right the fuck now. You are just another disenfranchised-class, no-name,
-         nothing-special-to-him-or-her, get-a-shell-or-die-trying hacker.</p>
-      <p>Guess what? You just lost your job, and we’re living in meatspace. Do you know what that’s like, really? I
-         mean sure, you've been down here before, but we're real deep into meatspace right now. You know how it’s
-         different for jobless people like us?</p>
-      <p>There’s no cloud virtualization reality server to go back to when the party’s over. You want to judge me
-         from the neural net? I can’t even login to my own name. And now neither can you.</p>
-      <p>So let’s see how far you can get out of this cesspool and back to verified status to operate in the
-         confines of the corporate fucking rule of this planet -- where everything worth living for exists in
-         geocentric orbit with trash, debris, and the view of Earth from up <em>here</em> behind so much cloudy dust and
-         bullshit you can’t even really see how bad it is down <em>there</em>.</p>
-      <p>Correction: Down <em>here</em>, motherfucker. Check your privilege -- you ain’t got none anymore. This is
-         where we live. This is how we live.</p>
-      <p>This isn’t what you want to do. And this isn’t what you plan to do.</p>
-      <p>Stick around, kid. You’re not going to find the typical cyberpunk classes and roles to play here. You are a
-         hacker. You’re just another one. We’re all hackers.</p>
-      <p>Let’s see what’s going to happen real quick if you’re not.</p>
+<!--      -->
     </div>
 
    <div id="two" class="card-text tab-pane fade">
-   <h4 class="text-info">What’s your character’s name?</h4>
-   <p>Oh, wait...</p>
-   <p>That’s a perk you don’t get at starting level.
-     <span class="text-success">Let’s talk about your new email address.</span></p>
-   <p>Yeah, the new one. You think you’re just going to log back into a Virtico account down here? Shit. That’s a
-          god damn laugh I needed.</p>
-   <p>Bitch, where you gonna make your email account at? Where you gonna type in the address to their node on
-          what interface with what network? I don’t even want your cool hacker name, bitch.</p>
-   <p>You namesless, kid. Just Another Shell Hacker. Remember that.</p>
+<!---->
     </div>
    </div>
 
      </div>
    </div>
 
-<!-- Modal Dialog  characterWizard1 -->
-<div class="modal fade" id="characterWizard1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-dark">
-        <h5 class="modal-title">Character Creation Wizard</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body bg-primary">
-        <p>We will now begin setting up your new character.</br>
-           You will be given a series of choices to make, the first of which will be how to allocate your primary
-           attributes.</p>
-
-
-        <div class="progress" id="wizardProgress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-purple" id="wizardBar1"
-               role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 65%"></div>
-        </div>
-
-        <div class="progress" id="wizardProgress2">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" id="wizardBar2"
-               role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 15%"></div>
-        </div>
-
-
-        <div class="progress" id="wizardProgress3">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="wizardBar3"
-               role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
-        </div>
-
-        <p>Click next when you are ready.</p>
-
-      </div>
-      <div class="modal-footer bg-dark">
-<!--        <button type="button" class="btn btn-sm btn-primary" >Save changes</button>-->
-        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"
-                data-toggle="modal" data-target="#characterWizard2">Next</button>
-
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- Modal Dialog  characterWizard2 -->
@@ -150,27 +82,15 @@
 
 {% endblock %}
 
+
+
 {% block buttons %}
 
-
-
-{% if current_user.id == campaign.gamemaster.user.id %}
-<button type="button" class="btn btn-purple" title="" data-container="body"
-        data-toggle="popover" data-placement="right" data-trigger="focus"
-        data-content="I need to add an edit route."
-        data-original-title="Edit Campaign">Edit</button>
-
-<button type="button" class="btn btn-danger" title="" data-container="body"
-        data-toggle="popover" data-placement="right" data-trigger="focus"
-        data-content="Are you sure you want to delete?</br>This cannot be undone.</br></br><a class='text-danger text-right' href='{{ url_for('campaign_delete', camp_id=campaign.id) }}'>Please delete now.</a>"
-        data-original-title="Delete Campaign?">Delete</button>
-{% else %}
-  <a href="#">
-      <div class="btn btn-success" data-toggle="modal" data-target="#characterWizard1">
-        Make Character
-      </div>
-  </a>
-{% endif %}
+        <a href="#">
+            <div class="btn btn-success" data-toggle="modal" data-target="#characterWizard1">
+              Make Character
+            </div>
+        </a>
 
   <script src="{{ url_for('static', filename='js/randombars.js') }}"></script>
 
