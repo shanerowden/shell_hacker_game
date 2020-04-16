@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 
-{% block sidebar %}{% endblock %}
+{% block sidebar %}
+ <div class="card">
+ <div class="card-body">
+  <h4 class="card-title text-success">{{ campaign.name }}</h4>
+   <h6 class="card-subtitle mb-2 text-muted">{{ campaign.descrip }}</h6>
+ </div>
+</div>
+{% endblock %}
+
 {% block content %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
 
+
+
+
+
+
+   <div class="tab-content">
+    <div id="one" class="card-text tab-pane fade show active">
 
 <div class="center">
   <h4 class="font-inline">
     Spend <span id="remaining-points" class="text-info"></span> points on primary attributes.
   </h4>
 </div>
-
-
-
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -95,10 +107,33 @@
 </div>
 
 
+    </div>
+
+   <div id="two" class="card-text tab-pane fade">
+   <h4 class="text-info">What’s your character’s name?</h4>
+   <p>Oh, wait...</p>
+   <p>That’s a perk you don’t get at starting level.
+     <span class="text-success">Let’s talk about your new email address.</span></p>
+   <p>Yeah, the new one. You think you’re just going to log back into a Virtico account down here? Shit. That’s a
+          god damn laugh I needed.</p>
+   <p>Bitch, where you gonna make your email account at? Where you gonna type in the address to their node on
+          what interface with what network? I don’t even want your cool hacker name, bitch.</p>
+   <p>You namesless, kid. Just Another Shell Hacker. Remember that.</p>
+    </div>
+   </div>
+
+
+<!---->
+
+
+
+
 
   <script src="{{ url_for('static', filename='js/spendpoints.js') }}"></script>
 
 
 
 {% endblock %}
-{% block buttons %}{% endblock %}
+{% block buttons %}
+  {% include 'character_new_side.html' %}
+{% endblock %}
