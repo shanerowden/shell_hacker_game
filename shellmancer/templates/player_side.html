@@ -1,5 +1,5 @@
 <div class="card mb-3">
-  <h3 class="card-header">PLAYER</h3>
+  <h3 class="card-header font-orbitron">PLAYER</h3>
   <div class="card-body">
     {% if current_user.user_name %}
       <h5 class="card-title">{{ current_user.user_name }}</h5>
@@ -12,8 +12,9 @@
       <h6 class="card-subtitle text-muted"><em>email hidden</em></h6>
     {% endif %}
   </div>
+  {% set pfp = "img/pfp/" + current_user.image_file  %}
   <img class="profile-pic rounded-circle center mb-3"
-       src="static/img/pfp/{{ current_user.image_file }}"
+       src="{{ url_for('static', filename=pfp) }}"
        alt="{{ current_user.email }} Profile Picture">
 <!--  <div class="card-body">-->
 <!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->

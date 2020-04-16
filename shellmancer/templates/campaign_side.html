@@ -1,5 +1,5 @@
 <div class="card mb-3">
-  <h3 class="card-header">GAMEMASTER</h3>
+  <h4 class="card-header font-orbitron">GAMEMASTER</h4>
   <div class="card-body">
     {% if campaign.gamemaster.user.user_name %}
       <h5 class="card-title">{{ campaign.gamemaster.user.user_name }}</h5>
@@ -12,6 +12,8 @@
       <h6 class="card-subtitle text-muted"><em>email hidden</em></h6>
     {% endif %}
   </div>
+  {% set pfp = "img/pfp/" + campaign.gamemaster.user.image_file %}
+
   <img class="profile-pic rounded-circle center mb-3"
        src="{{ url_for('static', filename=pfp) }}"
        alt="{{ campaign.gamemaster.user.email }} Profile Picture">

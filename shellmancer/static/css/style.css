@@ -12,8 +12,6 @@
   object-fit: cover;
 }
 
-
-
 body {
     margin: 0;
     padding: 0;
@@ -42,38 +40,35 @@ body {
 
 .inner {
     margin: 2em;
-    }
+}
 
-    .divcls
-    {
+.divcls {
 
-      width:300px;
-      background:#fff;
-      border: solid 1px #355681;
-      padding:20px;
+  width:300px;
+  background:#fff;
+  border: solid 1px #355681;
+  padding:20px;
+}
 
-      }
-    label {
-      display: inline-block; width: 7em;
-      }
+label {
+  display: inline-block; width: 7em;
+}
 
+input, select {
+  padding: 9px;
+  border: solid 1px #4B718B;
+  outline: 0;
+  width: 200px;
+  box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
 
-    input, select {
-      padding: 9px;
-      border: solid 1px #4B718B;
-      outline: 0;
-      width: 200px;
-      box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-      -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-      -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+.default-off {
+  display: none;
+}
 
-      }
-
-    .default-off {
-      display: none;
-      }
-
-
+/*
       .divcls
       {
 
@@ -101,4 +96,4 @@ body {
 
       .default-off {
         display: none;
-        } */
+        } */ */

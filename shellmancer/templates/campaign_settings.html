@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+
+{% block sidebar %}{% include 'campaign_side.html' %}{% endblock %}
+
+{% block content %}
+<div>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Change Campaign Details</legend>
+
+        <!--   Title     -->
+        <div class="form-group">
+          {% if form.title.errors %}
+            {{ form.title(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.title.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.title(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+        <!--   Descrip     -->
+        <div class="form-group">
+          {% if form.descrip.errors %}
+            {{ form.descrip(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.descrip.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.descrip(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+        <!--   Intro Text     -->
+        <div class="form-group">
+          {% if form.intro_text.errors %}
+            {{ form.intro_text(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.intro_text.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.intro_text(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+        <!--   Attribute A     -->
+            <!--   Label    -->
+        <div class="form-group">
+          {% if form.attr_a_name.errors %}
+            {{ form.attr_a_name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.attr_a_name.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.attr_a_name(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+              <!--   Description    -->
+        <div class="form-group">
+          {% if form.attr_a_descrip.errors %}
+            {{ form.attr_a_descrip(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.attr_a_descrip.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.attr_a_descrip(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+
+                <!--   Attribute B     -->
+            <!--   Label    -->
+        <div class="form-group">
+          {% if form.attr_b_name.errors %}
+            {{ form.attr_b_name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.attr_b_name.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.attr_b_name(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+              <!--   Description    -->
+        <div class="form-group">
+          {% if form.attr_b_descrip.errors %}
+            {{ form.attr_b_descrip(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.attr_b_descrip.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.attr_b_descrip(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+                <!--   Attribute C     -->
+            <!--   Label    -->
+        <div class="form-group">
+          {% if form.attr_c_name.errors %}
+            {{ form.attr_c_name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.attr_c_name.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.attr_c_name(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+              <!--   Description    -->
+        <div class="form-group">
+          {% if form.attr_c_descrip.errors %}
+            {{ form.attr_c_descrip(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.attr_c_descrip.errors %}
+                <span>{{error}}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.attr_c_descrip(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+        <!--   18+    -->
+        <div class="form-group">
+          {% if form.has_adult_content.errors %}
+            {{ form.has_adult_content(class="form-control form-control-lg is-invalid") }}
+          {% else %}
+            {{ form.has_adult_content(class="form-control form-control-lg text-dark") }}
+          {% endif %}
+        </div>
+
+        <!--   Submit   -->
+        <div class="form-inline float-left" style="width:57%;">
+          {{ form.submit(class="btn btn-lg btn-block btn-purple") }}
+        </div>
+
+      </fieldset>
+    </form>
+
+  </div>
+{% endblock %}
+
+
