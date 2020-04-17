@@ -15,7 +15,6 @@ toolbar = DebugTool(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-# bcrypt = Bcrypt(app)
 ph = PasswordHasher()
 
 login_manager = LoginManager(app)
@@ -24,4 +23,12 @@ login_manager.login_message_category = 'info'
 
 mail = Mail(app)
 
-from shellmancer import routes
+from shellmancer.users.routes import users
+from shellmancer.auth.routes import auth
+from shellmancer.campaigns.routes import campaigns
+from shellmancer.main.routes import main
+
+app.register_blueprint(users)
+app.register_blueprint(auth)
+app.register_blueprint(campaigns)
+app.register_blueprint(main)

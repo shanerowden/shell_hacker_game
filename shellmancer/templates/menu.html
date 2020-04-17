@@ -11,26 +11,26 @@
   <div class="dropdown-menu bg-dark">
     <div id="account-menu-div">
       {% if not current_user.is_verified %}
-        <a id="account-menu-get-verified" class="dropdown-item" href="{{ url_for('verify_request') }}">
+        <a id="account-menu-get-verified" class="dropdown-item" href="{{ url_for('auth.verify_request') }}">
           <strong><span class="text-warning">Get Verified</span></strong>
         </a>
       {% endif %}
 
-      <a id="account-menu-player-profile" class="dropdown-item" href="{{ url_for('player_profile') }}">
+      <a id="account-menu-player-profile" class="dropdown-item" href="{{ url_for('users.player_profile') }}">
         <span>Player Profile</span>
       </a>
 
       {% if current_user.gamemaster.access > 0 %}
-        <a id="account-menu-gm-profile" class="dropdown-item inactive" href="{{ url_for('gamemaster_profile') }}">
+        <a id="account-menu-gm-profile" class="dropdown-item inactive" href="{{ url_for('users.gamemaster_profile') }}">
           <span>GameMaster Profile</span>
         </a>
       {% endif %}
 
-      <a id="account-menu-settings" class="dropdown-item" href="{{ url_for('user_settings') }}">
+      <a id="account-menu-settings" class="dropdown-item" href="{{ url_for('users.user_settings') }}">
         <span>Settings</span>
       </a>
 
-      <a id="account-menu-logout" class="dropdown-item" href="{{ url_for('logout') }}">
+      <a id="account-menu-logout" class="dropdown-item" href="{{ url_for('auth.logout') }}">
         <span>Logout</span>
       </a>
     </div>
@@ -46,7 +46,7 @@
 
    <div class="dropdown-menu bg-dark">
      <div id="browse-menu-div" class="inactive">
-       <a id="browse-menu-campaigns" class="dropdown-item" href="{{ url_for('all_campaigns') }}">
+       <a id="browse-menu-campaigns" class="dropdown-item" href="{{ url_for('campaigns.all_campaigns') }}">
          <span>Campaigns</span>
        </a>
 
@@ -95,7 +95,7 @@
 
 <!--  &lt;!&ndash; Dropdown 1  &ndash;&gt;-->
 <!--   <div class="dropdown-menu bg-dark">-->
-<!--    <a id="help-menu-docs" class="dropdown-item" href="{{ url_for('docs') }}">-->
+<!--    <a id="help-menu-docs" class="dropdown-item" href="{{ url_for('main.docs') }}">-->
 <!--      <span>Documentation</span>-->
 <!--    </a>-->
 <!--    <a id="help-menu-about" class="dropdown-item" href="#">-->

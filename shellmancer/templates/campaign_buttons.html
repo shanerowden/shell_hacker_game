@@ -30,7 +30,7 @@
 
     <div class="btn-group-sm center mt-3">
       {% if current_user.id == campaign.gamemaster.user.id %}
-        <a class="btn btn-info mr-4" href="{{ url_for('campaign_settings', camp_id=campaign.id) }}">Edit</a>
+        <a class="btn btn-info mr-4" href="{{ url_for('campaigns.campaign_settings', camp_id=campaign.id) }}">Edit</a>
 
         <button type="button" class="btn btn-danger" title="" data-container="body"
                 data-toggle="popover" data-placement="right" data-trigger="focus"
