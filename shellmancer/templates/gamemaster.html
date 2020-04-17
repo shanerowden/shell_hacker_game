@@ -1,19 +1,15 @@
 {% extends 'base.html' %}
 
-
 {% block sidebar %}
+  {% include 'gamemaster_left.html' %}
 {% endblock %}
-
-
 
 {% block content %}
   {% include 'campaign_list.html' %}
 {% endblock %}
 
-
-
 {% block buttons %}
-<a href="{{ url_for('new_campaign') }}">
+<a href="{{ url_for('new_campaign', camp_id=) }}">
   <div class="btn btn-success">
     New Campaign
   </div>

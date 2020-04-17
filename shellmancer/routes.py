@@ -172,7 +172,7 @@ def new_campaign():
             db.session.commit()
             return redirect(url_for('campaign_settings', camp_id=campaign.id))
     return render_template("campaign_new.html",
-                           form=form)
+                           form=form, title="New Campaign")
 
 
 @app.route('/campaign/<camp_id>/update', methods=['GET', 'POST'])
