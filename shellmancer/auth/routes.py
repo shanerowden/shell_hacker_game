@@ -46,7 +46,7 @@ def login():
             if user and ph.verify(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
                 next_page = request.args.get('next')
-                return redirect(next_page) if next_page else redirect(url_for('home'))
+                return redirect(next_page) if next_page else redirect(url_for('main.home'))
         except InvalidHash:
             flash('Login Unsuccessful. Please check email and password.', 'danger')
 

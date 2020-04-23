@@ -1,4 +1,3 @@
-
 const maxTotalPoints = 10;
 const maxAttrRank = 7;
 const minAttrRank = 1;
@@ -50,6 +49,9 @@ function reducePoints(bar, attr) {
     attr.value--
 
     setHTMLToValue()
+    if (!checkTotalPoints()) {
+      document.querySelector('#devices-tab').classList.add('disabled');
+    }
   } else {
     return
   }
@@ -69,7 +71,46 @@ function increasePoints(bar, attr) {
     attr.value++
 
     setHTMLToValue()
+    if (checkTotalPoints()) {
+      document.querySelector('#devices-tab').classList.remove('disabled');
+
+    }
   } else {
     return
   }
+}
+
+// popover
+$(document).ready(function() {
+  $('[data-toggle="popover"]').popover({html:true});
+});
+
+
+// toggle div
+class ToggleDiv{
+  constructor(elem, toggableClass, titleElem) {
+    this.elem = elem;
+    this.toggleClass = toggableClass;
+    this.titleElem = titleElem;
+  }
+
+  highlight() {
+      this.elem.classList.toggle(this.toggleClass);
+      this.titleElem.classList.toggle("text-info");
+  }
+
+  bindEventListener() {
+      this.elem.addEventListener('click', () => this.highlight())
+  }
+}
+
+const devices = document.querySelectorAll('.devices');
+const deviceTitles = document.querySelectorAll('.card-title');
+
+let div;
+let toggleDivs = [];
+for (let idx in devices) {
+div = new ToggleDiv(devices[idx], 'border-info', deviceTitles[idx]);
+div.bindEventListener();
+toggleDivs.push(div);
 }
