@@ -4,10 +4,12 @@ from pathlib import Path
 from typing import Union
 import json
 
-# TODO: Import Problem
-# from ..campaigns.authoring import DummyData
-# from shellmancer.campaigns.authoring import DummyData
-from shellmancer.models import UserAccount
+class DummyData:
+    default_msgs = dict(
+        win_condition=("You successfully completed the objective", 0),
+        fail_condition=("You fucked up the mission", 0)
+    )
+
 
 class ClockEvent:
     """
@@ -18,10 +20,10 @@ class ClockEvent:
     EventTypes = ['warning', 'tutorial', 'objective']
 
     def __init__(self, hour: int,
-                 msg: Union[(dict, str, None)],
+                 msg: Union[dict, str, None],
                  event_type: str,
                  consequences: Union[list, None] = None,
-                 hint: Union[(str, None)] = None):
+                 hint: Union[str, None] = None):
         self.hour = hour
         self.msg = msg if type(msg) == str else ""
         self.event_type = event_type if event_type in ClockEvent.EventTypes else ""
@@ -36,19 +38,19 @@ class ClockEvent:
 
 class ObjectiveEvent(ClockEvent):
     """
-    Provide Hour Issued, Hours to Live, Message Dict as Shown Below
+    Provide Hour Issued, Hours to Live, Message Dict as shown by DummyData.default_msgs
     """
     def __init__(self, hour: int,
-                 msg: Union[(dict, None)] = None,
-                 hours_total: Union[(int, None)] = None,
-                 consequences: Union[(list, None)] = None,
-                 event_type: str = "objective"):
-        super().__init__(hour, msg, hours_total, consequences, event_type)
+                 msg: Union[dict, None] = None,
+                 event_type: str = "objective",
+                 consequences: Union[list, None] = None,
+                 hours_total: Union[int, None] = None, **kwargs):
+        super().__init__(hour=hour, msg=msg, event_type=event_type, consequences=consequences, **kwargs)
         self.msg = DummyData.default_msgs if msg is None else msg if type(msg) == dict else {}
         self.consequences = [] if consequences is None else consequences
         self.event_type = event_type if event_type in ClockEvent.EventTypes else "error"
         self.hour = hour
-        self.hours_total = hours_total
+        self.hours_total = hours_total if type(hours_total) == int else 0
         self.expire_hour = self._get_expire_time(hour, hours_total)
 
     def __repr__(self):
@@ -96,7 +98,7 @@ class PhaseClock:
         self.next_event = self._get_most_time_sensitive_event()
         self.remaining_time = self._update_remaining_time()
 
-    def _get_most_time_sensitive_event(self) -> Union[(dict, ClockEvent)]:
+    def _get_most_time_sensitive_event(self):
         for hour, event in self.clock.items():
             if not self.clock[hour].consequences:
                 continue
@@ -134,4 +136,4 @@ p1.advance_clock(1)
 pp(p1.next_event)
 pp(p1.clock)
 
-o = ObjectiveEvent(1, ObjectiveEvent.default_msgs, 3)
+o = ObjectiveEvent(hour=1, msg=DummyData.default_msgs, hours_total=3)
