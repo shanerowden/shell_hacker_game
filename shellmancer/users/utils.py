@@ -1,7 +1,6 @@
 import os
 import secrets
 from PIL import Image
-
 from shellmancer import app
 
 

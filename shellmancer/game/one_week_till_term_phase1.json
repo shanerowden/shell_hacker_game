@@ -1,0 +1,36 @@
+{
+  "phase": "One Week Till Termination",
+  "total_time": 168,
+  "events": [
+    {
+      "name": "dsfsdfsdfdsf",
+      "hour": 0,
+      "event_type": "sdfasfd",
+      "msg": "sdafdasf",
+      "hint": "dsfdsfds",
+      "consequences": [
+        {"attr": "meat", "adjust": "5"},
+        {"attr": "leet", "adjust": "-3"}
+      ]
+    },
+    {
+      "name": "sdffdsf",
+      "hour": 1,
+      "event_type": "dsfdsfds",
+      "msg": "dsfdsfds",
+      "hint": "sdfdsfds",
+      "consequences": []
+    },
+    {
+      "name": "sdffdsf",
+      "hour": 2,
+      "event_type": "dsfdsfds",
+      "msg": "dsfdsfds",
+      "hint": "sdfdsfds",
+      "consequences": [
+        {"attr": "street", "adjust": "5"},
+        {"attr": "leet", "adjust": "-3"}
+      ]
+    }
+  ]
+}

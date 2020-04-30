@@ -27,8 +27,10 @@ from shellmancer.users.routes import users
 from shellmancer.auth.routes import auth
 from shellmancer.campaigns.routes import campaigns
 from shellmancer.main.routes import main
+from shellmancer.game.routes import game
 
 app.register_blueprint(users)
 app.register_blueprint(auth)
 app.register_blueprint(campaigns)
 app.register_blueprint(main)
+app.register_blueprint(game)

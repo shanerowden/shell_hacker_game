@@ -1,136 +1,194 @@
 {% extends 'base.html' %}
 
 {% block sidebar %}
- <div class="card">
- <div class="card-body">
-  <h4 class="card-title text-success">{{ campaign.name }}</h4>
-   <h6 class="card-subtitle mb-2 text-muted">{{ campaign.descrip }}</h6>
- </div>
-</div>
-{% endblock %}
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title text-success">{{ campaign.name }}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">{{ campaign.descrip }}</h6>
+  </div>
+</div>{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
+      integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
 
 <div class="jumbotron">
 
-
-   <div class="tab-content">
+  <div class="tab-content">
     <div id="one" class="card-text tab-pane fade show active">
 
-<div class="center">
-  <h4 class="font-inline">
-    Spend <span id="remaining-points" class="text-info"></span> points on primary attributes.
-  </h4>
-</div>
+      <div class="center">
+        <h4 class="font-inline">
+          Spend <span id="remaining-points" class="text-info"></span> points on primary attributes. </h4>
+      </div>
 
-        <hr class="my-4">
+      <hr class="my-4">
       <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h5 class="font-orbitron ml-5">
-        meat: <span id="attribute-one" class="text-danger font-inline display"></span>
-      </h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-2">
-      <div class="btn btn-sm center btn-primary" onclick="reducePoints(getWizardBar1, attr1)">
-        <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
-      </div>
-    </div>
-    <div class="col-8">
-      <div class="progress bg-primary" id="wizardProgress1">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" id="wizardBar1"
-               role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+        <div class="row">
+          <div class="col-12">
+            <h5 class="font-orbitron ml-5">
+              meat: <span id="attribute-one" class="text-danger font-inline display"></span>
+            </h5>
+          </div>
         </div>
-    </div>
-    <div class="col-2">
-      <div class="btn btn-sm center btn-primary" onclick="increasePoints(getWizardBar1, attr1)">
-        <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <h5 class="font-orbitron ml-5">
-        l33t: <span id="attribute-two" class="text-success font-inline"></span>
-      </h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-2">
-      <div class="btn btn-sm center btn-primary" onclick="reducePoints(getWizardBar2, attr2)">
-        <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
-      </div>
-    </div>
-    <div class="col-8">
-      <div class="progress bg-primary" id="wizardProgress2">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="wizardBar2"
-               role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+        <div class="row">
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="meat.reducePoints(getWizardBar1)">
+              <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="progress bg-primary" id="wizardProgress1">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" id="wizardBar1"
+                   role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="meat.increasePoints(getWizardBar1)">
+              <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="col-2">
-      <div class="btn btn-sm center btn-primary" onclick="increasePoints(getWizardBar2, attr2)">
-        <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
-      </div>
-    </div>
-  </div>
 
-
-    <div class="row">
-    <div class="col-12">
-      <h5 class="font-orbitron ml-5">
-        street: <span id="attribute-three" class="text-purple font-inline"></span>
-      </h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-2">
-      <div class="btn btn-sm center btn-primary" onclick="reducePoints(getWizardBar3, attr3)">
-        <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
-      </div>
-    </div>
-    <div class="col-8">
-      <div class="progress bg-primary" id="wizardProgress3">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-purple" id="wizardBar3"
-               role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+        <div class="row">
+          <div class="col-12">
+            <h5 class="font-orbitron ml-5">
+              l33t: <span id="attribute-two" class="text-success font-inline"></span>
+            </h5>
+          </div>
         </div>
-    </div>
-    <div class="col-2">
-      <div class="btn btn-sm center btn-primary" onclick="increasePoints(getWizardBar3, attr3)">
-        <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
+        <div class="row">
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="leet.reducePoints(getWizardBar2)">
+              <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="progress bg-primary" id="wizardProgress2">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="wizardBar2"
+                   role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="leet.increasePoints(getWizardBar2)">
+              <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <h5 class="font-orbitron ml-5">
+              street: <span id="attribute-three" class="text-purple font-inline"></span>
+            </h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="street.reducePoints(getWizardBar3)">
+              <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="progress bg-primary" id="wizardProgress3">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-purple" id="wizardBar3"
+                   role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="street.increasePoints(getWizardBar3)">
+              <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+
+    <div id="two" class="card-text tab-pane fade">
+
+      <div class="center">
+        <h4 class="font-inline">
+          sdfdsfdsafdsfdsafdsafdsf
+        </h4>
+      </div>
+
+      <hr class="my-4">
+      <div class="container"></div>
+    </div>
+
+    
+    <div id="three" class="card-text tab-pane fade">
+
+      <div class="center">
+        <h4 class="font-inline">
+          You Have <span class="text-info"">2</span> Things to Your Name... </h4>
+      </div>
+      <hr class="my-4">
+      <div class="container font-quantico">
+        <div class="row">
+
+          <div class="col-6">
+            <div class="card devices" id="device-one">
+              <div class="card-body">
+                <h4 class="card-title option-title font-quantico">Stolen Cyberdeck</h4>
+                <h6 class="card-subtitle mb-2 text-muted">+1 street / -1 leet</h6>
+                <p class="card-text">Can't say for sure where it came from, but it's got...
+                                     somebody's shit on it. You can't seem to wipe it clean. Maybe it's got something useful.
+                                     Hey, it's yours now.</p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="card devices" id="device-two">
+              <div class="card-body">
+                <h4 class="card-title option-title font-quantico">Samurai Sword</h4>
+                <h6 class="card-subtitle mb-2 text-muted">+1 meat / -1 street</h6>
+                <p class="card-text">"Hey, you seen that cat with the sword on 16th and Commerce? Nah, fuck that. We bouta find
+                                     another corner. That's his corner." Ain't no body fuck with you.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mt-4">
+
+          <div class="col-6">
+            <div class="card devices" id="device-three">
+              <div class="card-body">
+                <h4 class="card-title option-title font-quantico">85.44 GB Wordlist</h4>
+                <h6 class="card-subtitle mb-2 text-muted">+1 leet / -1 meat</h6>
+                <p class="card-text">A prolific assembly of words like "123456 password iloveyou babygirl," all organized
+                                     by demographic users: porn_addicts, sports_fans, script_kids.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="card devices" id="device-four">
+              <div class="card-body font-quantico">
+                <h4 class="card-title option-title font-quantico">Fake Work Visa</h4>
+                <h6 class="card-subtitle mb-2 text-muted">+1 street / -1 meat</h6>
+                <p class="card-text">"You know, my dad worked for Vertico for 25 years. It's a good company. You're not
+                                     supposed to be here this time of night, but... you have a good night, sir." </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
   </div>
-</div>
-    </div>
-
-   <div id="two" class="card-text tab-pane fade">
-
-     <div class="center">
-  <h4 class="font-inline">
-    Please select your starting device.
-  </h4>
-</div>
-
-        <hr class="my-4">
-
-
-    </div>
-   </div>
-
 
   <p class="lead">
     <a id="character-submit" class="btn btn-primary btn-lg default-off" href="#" role="button">Learn more</a>
   </p>
 </div>
-
-
-
-
 
 <!---->
 
@@ -139,12 +197,4 @@
 </a>
 
 
-
-  <script src="{{ url_for('static', filename='js/spendpoints.js') }}"></script>
-
-
-
-{% endblock %}
-{% block buttons %}
-  {% include 'character_new_side.html' %}
-{% endblock %}
+{% endblock %}{% block buttons %}{% include 'character_new_side.html' %}{% endblock %}
