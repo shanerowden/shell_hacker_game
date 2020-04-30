@@ -7,11 +7,14 @@ from argon2.exceptions import InvalidHash
 from shellmancer.auth.forms import (
     RegisterForm, LoginForm, RequestResetForm, PasswordResetForm, RequestVerifyForm
 )
+from shellmancer.models import SinglePlayerCampaign
 
 auth = Blueprint('auth', 'shellmancer')
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
+    campaign = SinglePlayerCampaign.query.get(1)
+    # characters = None
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
 
@@ -30,11 +33,12 @@ def register():
               + "Check your email to verify account for full functionality. You may login now.", 'success')
         return redirect(url_for('auth.login'))
 
-    return render_template("register.html", title="Register", form=form)
-
+    return render_template("register.html", title="Register", form=form, character_count=0, campaign=campaign)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    campaign = SinglePlayerCampaign.query.get(1)
+    characters = None
     if current_user.is_authenticated:
         return redirect(url_for('users.player_profile'))
 
@@ -52,7 +56,8 @@ def login():
 
     return render_template("login.html",
                            title="Login",
-                           form=form)
+                           form=form,
+                           character_count=0, campaign=campaign)
 
 
 @auth.route('/logout')

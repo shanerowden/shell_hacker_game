@@ -18,19 +18,18 @@ migrate = Migrate(app, db)
 ph = PasswordHasher()
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 login_manager.login_message_category = 'info'
 
 mail = Mail(app)
 
 from shellmancer.users.routes import users
 from shellmancer.auth.routes import auth
-from shellmancer.campaigns.routes import campaigns
-from shellmancer.main.routes import main
 from shellmancer.game.routes import game
+from shellmancer.main.routes import main
+
 
 app.register_blueprint(users)
 app.register_blueprint(auth)
-app.register_blueprint(campaigns)
 app.register_blueprint(main)
 app.register_blueprint(game)

@@ -1,0 +1,76 @@
+<div id="top-nav" class="fixed-top">
+    <ul class="top-nav nav-tabs bg-primary container-fluid">
+  
+
+            <!-- Account Dropdown -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false" href="#">
+          Account
+        </a>
+  
+        <div class="dropdown-menu bg-dark">
+          <div id="account-menu-div">
+
+            <a id="account-menu-register" class="dropdown-item" href="{{ url_for('auth.register') }}">
+              <span>Register</span>
+            </a>
+            <a id="account-menu-login" class="dropdown-item" href="{{ url_for('auth.login') }}">
+                <span>Login</span>
+            </a>
+          </div>
+        </div>
+      </li>
+  
+  
+      <!-- Browse Dropdown Button -->
+      <li class="nav-item dropdown disabled">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false" href="#">
+          Browse
+        </a>
+  
+        <div class="dropdown-menu bg-dark">
+          <div id="browse-menu-div" class="inactive">
+            <a id="browse-menu-campaigns" class="dropdown-item" href="{{ url_for('game.all_campaigns') }}">
+              <span>Campaigns</span>
+            </a>
+  
+            <a id="browse-menu-open-link" class="dropdown-item" href="#">
+              <span>Characters</span>
+            </a>
+  
+            <a id="browse-menu-corps" class="dropdown-item" href="#">
+              <span>Corporations</span>
+            </a>
+  
+            <a id="browse-menu-contacts" class="dropdown-item" href="#">
+              <span>Contacts</span>
+            </a>
+  
+            <a id="browse-menu-locales" class="dropdown-item" href="#">
+              <span>Places</span>
+            </a>
+  
+          </div>
+        </div>
+      </li>
+  
+
+      <!-- Help Dropdown -->
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        Help
+      </a>
+
+        <div class="dropdown-menu bg-dark">
+         <a id="help-menu-docs" class="dropdown-item" href="{{ url_for('main.docs') }}">
+           <span>Documentation</span>
+         </a>
+         <a id="help-menu-about" class="dropdown-item" href="#">
+           <span>About</span>
+         </a>
+        </div>
+  </li> 
+</ul>
+</div>

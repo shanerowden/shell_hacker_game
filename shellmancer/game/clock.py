@@ -16,7 +16,7 @@ class ClockEvent:
     A Base Class for General Events on the Game Clock. Varies a bit from its children classes sometimes.
     See docstring for class.
     """
-    Consequence = namedtuple("Consequence", ['attr', 'adjust'])
+    Conseq = namedtuple("Conseq", ['attr', 'adjust'])
     EventTypes = ['warning', 'tutorial', 'objective']
 
     def __init__(self, hour: int,
@@ -28,12 +28,12 @@ class ClockEvent:
         self.msg = msg if type(msg) == str else ""
         self.event_type = event_type if event_type in ClockEvent.EventTypes else ""
         self.hint = hint if hint else "A hint is not available."
-        self.consequences = [ClockEvent.Consequence(attr=attr, adjust=int(adjust))
+        self.consequences = [ClockEvent.Conseq(attr=attr, adjust=int(adjust))
                              for attr, adjust in consequences] if consequences else []
 
     def __repr__(self):
         return f'ClockEvent{self.hour}(Message: {self.msg}, Type: {self.event_type}, ' \
-               + f'Consequences: {bool(self.consequences)})'
+               + f'Conseq: {bool(self.consequences)})'
 
 
 class ObjectiveEvent(ClockEvent):
@@ -116,7 +116,7 @@ class PhaseClock:
     # Helper Functions
     def set_json_marks_to_clock(self, json_data: dict):
         for idx, mark in enumerate(json_data["events"]):
-            conseqs_to_obj = [ClockEvent.Consequence(
+            conseqs_to_obj = [ClockEvent.Conseq(
                 attr=mark["consequences"][c_idx]['attr'],
                 adjust=mark["consequences"][c_idx]['adjust']
              ) for c_idx, _ in enumerate(mark["consequences"])]

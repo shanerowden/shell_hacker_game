@@ -1,13 +1,9 @@
-
-
-
-
 <hr>
 {% for campaign in campaigns %}
   <div class="card">
     <div class="card-body">
       <h4>
-        <a class="text-success" href="{{ url_for('campaigns.campaign_profile', camp_id=campaign.id) }}">
+        <a class="text-success" href="{{ url_for('game.campaign_profile', camp_id=campaign.id) }}">
           {{campaign.name}}
         </a>
       </h4>

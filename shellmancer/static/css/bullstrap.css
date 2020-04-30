@@ -88,4 +88,20 @@
 @keyframes animate-positive{
     0%{ width: 0; }
 }
-License Terms
+
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+  font-family: 'Orbitron', sans-serif !important;
+}
+
+.nav-link {
+  font-family: 'Orbitron', sans-serif !important;
+}
+
+.btn {
+  font-family: 'Quantico', sans-serif !important;
+}
+
+.card-body .modal-content {
+  font-family: 'Seymour One', sans-serif !important;
+}

@@ -126,6 +126,8 @@ class SinglePlayerCampaign(db.Model):
     GameMasterProfile 1-M SinglePlayerCampaign
     """
     __tablename__ = 'campaign'
+    attr_name_length = 25
+    attr_descrip_length = 250
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
@@ -137,12 +139,12 @@ class SinglePlayerCampaign(db.Model):
     has_adult_content = db.Column(db.Boolean, default=False)
 
 
-    attr_a_name = db.Column(db.String(25))
-    attr_b_name = db.Column(db.String(25))
-    attr_c_name = db.Column(db.String(25))
-    attr_a_descrip = db.Column(db.String(250))
-    attr_b_descrip = db.Column(db.String(250))
-    attr_c_descrip = db.Column(db.String(250))
+    attr_a_name = db.Column(db.String(attr_name_length))
+    attr_b_name = db.Column(db.String(attr_name_length))
+    attr_c_name = db.Column(db.String(attr_name_length))
+    attr_a_descrip = db.Column(db.String(attr_descrip_length))
+    attr_b_descrip = db.Column(db.String(attr_descrip_length))
+    attr_c_descrip = db.Column(db.String(attr_descrip_length))
 
     gamemaster = db.relationship('GameMasterProfile', back_populates="campaigns")
     character_sheet = db.relationship("CharacterSheet", back_populates="campaign")

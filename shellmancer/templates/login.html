@@ -4,18 +4,10 @@
   {% include 'login_form.html' %}
 {% endblock %}
 
-{% block leftbaralt %}
-    {% include 'login_form.html' %}
-{% endblock %}
-
-{% block rightbaralt %}
-  {% include 'main_noauth_side.html' %}
-{% endblock %}
-
 {% block content %}
   {% include 'main_noauth.html' %}
 {% endblock %}
 
 {% block buttons %}
-  {% include 'main_noauth_side.html' %}
+  {% include 'campaign_buttons.html' %}
 {% endblock %}

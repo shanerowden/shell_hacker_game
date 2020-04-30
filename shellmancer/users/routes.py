@@ -39,9 +39,6 @@ def make_gamemaster():
         return redirect(url_for('users.gamemaster_profile'))
 
 
-
-
-
 @users.route('/settings', methods=['GET', 'POST'])
 @login_required
 def user_settings():

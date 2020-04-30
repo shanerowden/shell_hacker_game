@@ -1,16 +1,68 @@
 {% extends 'base.html' %}
 
+{% block morestyle %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
+  integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+{% endblock %}
+
 {% block sidebar %}
-<div class="card">
-  <div class="card-body">
-    <h4 class="card-title text-success">{{ campaign.name }}</h4>
-    <h6 class="card-subtitle mb-2 text-muted">{{ campaign.descrip }}</h6>
+  {% if not current_user.is_authenticated %}
+    {% include 'register_form.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block collapse %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">
+    
+    <i class="fa fa-play-circle fa-lg" aria-hidden="true"></i>
+    <span class="sr-only">Playbook</span></a>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-heartbeat fa-lg" aria-hidden="true"></i>
+          <span class="sr-only">Status</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-clipboard fa-lg" aria-hidden="true"></i>
+          <span class="sr-only">Intelligence</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-binoculars fa-lg" aria-hidden="true"></i>
+          <span class="sr-only">Location</span></a>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-tasks fa-lg" aria-hidden="true"></i>
+          <span class="sr-only">Objectives</span></a>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-users fa-lg" aria-hidden="true"></i>
+          <span class="sr-only">Contacts</span></a>
+        </a>
+      </li>
+    </ul>
   </div>
-</div>{% endblock %}
+</nav>
+
+{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
-      integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+
+
+
 
 <div class="jumbotron">
 
@@ -33,7 +85,7 @@
         </div>
         <div class="row">
           <div class="col-2">
-            <div class="btn btn-sm center btn-primary" onclick="meat.reducePoints(getWizardBar1)">
+            <div class="btn btn-sm center btn-primary" onclick="reducePoints(getWizardBar1, attr1)">
               <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
             </div>
           </div>
@@ -44,7 +96,7 @@
             </div>
           </div>
           <div class="col-2">
-            <div class="btn btn-sm center btn-primary" onclick="meat.increasePoints(getWizardBar1)">
+            <div class="btn btn-sm center btn-primary" onclick="increasePoints(getWizardBar1, attr1)">
               <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
             </div>
           </div>
@@ -59,7 +111,7 @@
         </div>
         <div class="row">
           <div class="col-2">
-            <div class="btn btn-sm center btn-primary" onclick="leet.reducePoints(getWizardBar2)">
+            <div class="btn btn-sm center btn-primary" onclick="reducePoints(getWizardBar2, attr2)">
               <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
             </div>
           </div>
@@ -70,7 +122,7 @@
             </div>
           </div>
           <div class="col-2">
-            <div class="btn btn-sm center btn-primary" onclick="leet.increasePoints(getWizardBar2)">
+            <div class="btn btn-sm center btn-primary" onclick="increasePoints(getWizardBar2, attr2)">
               <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
             </div>
           </div>
@@ -85,7 +137,7 @@
         </div>
         <div class="row">
           <div class="col-2">
-            <div class="btn btn-sm center btn-primary" onclick="street.reducePoints(getWizardBar3)">
+            <div class="btn btn-sm center btn-primary" onclick="reducePoints(getWizardBar3, attr3)">
               <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
             </div>
           </div>
@@ -96,7 +148,7 @@
             </div>
           </div>
           <div class="col-2">
-            <div class="btn btn-sm center btn-primary" onclick="street.increasePoints(getWizardBar3)">
+            <div class="btn btn-sm center btn-primary" onclick="increasePoints(getWizardBar3, attr3)">
               <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
             </div>
           </div>
@@ -197,4 +249,17 @@
 </a>
 
 
-{% endblock %}{% block buttons %}{% include 'character_new_side.html' %}{% endblock %}
+{% endblock %}
+
+{% block buttons %}
+  {% include 'character_new_side.html' %}
+{% endblock %}
+
+{% block modals %}
+  {% include 'character_wizard_modals.html' %}
+{% endblock %}
+
+{% block morescript %}
+<script src="{{ url_for('static', filename='js/spendpoints.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='js/dist/tstest.js') }}"></script> -->
+{% endblock %}

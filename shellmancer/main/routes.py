@@ -8,7 +8,8 @@ main = Blueprint('main', 'shellmancer')
 def home():
     if not current_user.is_authenticated:
         return redirect(url_for('auth.login'))
-    return render_template('index.html')
+    return redirect(url_for('game.campaign_profile', camp_id=1))
+    # return render_template('index.html')
 
 @main.route('/docs')
 def docs():

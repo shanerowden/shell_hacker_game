@@ -179,3 +179,4 @@ let personalityModalHandler = function() {
 }
 
 personalityTab.addEventListener('click', personalityModalHandler, false);
+
