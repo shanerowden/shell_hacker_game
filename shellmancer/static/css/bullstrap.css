@@ -105,3 +105,15 @@
 .card-body .modal-content {
   font-family: 'Seymour One', sans-serif !important;
 }
+
+.text-teal {
+  color:  var(--teal);
+}
+/* #20c997; */
+
+.code-light {
+  background:var(--light);
+  color: var(--dark);
+  border: 2px var(--indigo) solid;
+  padding: 3px;
+}

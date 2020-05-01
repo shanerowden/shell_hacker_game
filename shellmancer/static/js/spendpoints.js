@@ -19,18 +19,21 @@ pointsRemaining.innerHTML = maxTotalPoints;
 
 let attr1 = {
   elem: document.querySelector('#attribute-one'),
+  elem2: document.querySelector('#meatNumOnMenu'),
   value: startingAttrValue
 }
 attr1.elem.innerHTML = attr1.value
 
 let attr2 = {
   elem: document.querySelector('#attribute-two'),
+  elem2: document.querySelector('#leetNumOnMenu'),
   value: startingAttrValue
 }
 attr2.elem.innerHTML = attr2.value
 
 let attr3 = {
   elem: document.querySelector('#attribute-three'),
+  elem2: document.querySelector('#streetNumOnMenu'),
   value: startingAttrValue
 }
 attr3.elem.innerHTML = attr3.value
@@ -41,8 +44,11 @@ let getWizardBar3 = document.querySelector('#wizardBar3');
 
 function setHTMLToValue() {
   attr1.elem.innerHTML = attr1.value;
+  attr1.elem2.innerHTML = attr1.value;
   attr2.elem.innerHTML = attr2.value;
+  attr2.elem2.innerHTML = attr2.value;
   attr3.elem.innerHTML = attr3.value;
+  attr2.elem2.innerHTML = attr2.value;
 }
 
 function checkTotalPoints() {
@@ -62,6 +68,8 @@ function reducePoints(bar, attr) {
     setHTMLToValue()
     if (!checkTotalPoints()) {
       document.querySelector('#personality-tab').classList.add('disabled');
+      document.querySelector('#accordion-attributes').classList.add('hidden')
+      // document.querySelector('#one').classList.remove('hidden')
     }
   } else {
     return
@@ -84,13 +92,38 @@ function increasePoints(bar, attr) {
     setHTMLToValue()
     if (checkTotalPoints()) {
       document.querySelector('#personality-tab').classList.remove('disabled');
+      document.querySelector('#accordion-attributes').classList.remove('hidden')
+      // document.querySelector('#one').classList.add('hidden')
       character = new CharacterStats(attr1.value, attr2.value, attr3.value)
       console.log(character);
+      return
+
     }
   } else {
     return
   }
 }
+
+
+primary_attr = Math.max(character.attr1.value, character.attr2.value, character.attr3.value)
+terniary_attr = Math.min(character.attr1.value, character.attr2.value, character.attr3.value)
+
+flawed = null, false;
+advantaged = false;
+for (let attr of [character.attr1.value, character.attr2.value, character.attr3.value]) {
+  if (attr === 1) {
+    console.log(attr)
+    flawed = attr, true;
+    character.flawed = flawed;
+  } else if (attr == 7) {
+    console.log(attr)
+    advantaged = attr, true;
+    character.advantaged = advantaged;
+  }
+
+}
+
+
 
 
 // toggle div

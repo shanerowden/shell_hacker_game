@@ -7,6 +7,7 @@ from shellmancer.auth.forms import RegisterForm
 from shellmancer.models import UserAccount
 from shellmancer.auth.utils import send_verify_email
 
+
 game = Blueprint('game', 'shellmancer')
 
 
@@ -179,3 +180,4 @@ def campaign_popup(camp_id):
         return redirect(url_for('game.all_campaigns'))
 
     return render_template('campaign_popup.html', campaign=campaign)
+
