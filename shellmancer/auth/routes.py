@@ -56,8 +56,7 @@ def login():
 
     return render_template("login.html",
                            title="Login",
-                           form=form,
-                           character_count=0, campaign=campaign)
+                           form=form, campaign=campaign)
 
 
 @auth.route('/logout')

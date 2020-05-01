@@ -17,7 +17,7 @@ def docs():
 
 @main.route('/test')
 def testing():
-    campaign = SinglePlayerCampaign.query.get(2)
+    campaign = SinglePlayerCampaign.query.get(1)
     return render_template("testing.html", campaign=campaign)
 
 
