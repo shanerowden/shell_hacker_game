@@ -38,7 +38,7 @@ def register():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     campaign = SinglePlayerCampaign.query.get(1)
-    characters = None
+    # characters = None
     if current_user.is_authenticated:
         return redirect(url_for('users.player_profile'))
 
