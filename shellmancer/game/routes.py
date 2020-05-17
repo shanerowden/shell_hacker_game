@@ -89,11 +89,10 @@ def all_campaigns():
 def campaign_profile(camp_id):
     try:
         campaign = SinglePlayerCampaign.query.get(camp_id)
-    except:
-        return redirect(url_for('game.all_campaigns'))
-
-    characters = CharacterSheet.query.filter_by(
-        campaign_id=camp_id, player_id=current_user.player.id).all()
+        characters = CharacterSheet.query.filter_by(
+            campaign_id=camp_id, player_id=current_user.player.id).all()
+    except AttributeError:
+        return redirect(url_for('main.docs'))
 
     if len(characters) < 1:
         flash("You do not have any characters for this campaign yet. Make one!", "info")
@@ -101,8 +100,6 @@ def campaign_profile(camp_id):
     return render_template('campaign_profile.html',
                            title=f"Campaign | {campaign.name}", campaign=campaign, character_count=len(characters),
                            pfp=f"img/pfp/{campaign.gamemaster.user.image_file}")
-
-
 
 
 @game.route('/campaign/<camp_id>/delete')

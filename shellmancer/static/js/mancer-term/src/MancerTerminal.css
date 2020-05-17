@@ -4,7 +4,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.VanillaTerm {
+.mancer-terminal {
   background-color: #222222;
   color: white;
   font-family: "Inconsolata", "Courier New", Courier, monospace;
@@ -13,62 +13,62 @@
   padding: 0.75em 1em;
 }
 
-  .VanillaTerm .container {
+  .mancer-terminal .container {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
   }
-    .VanillaTerm .container ::selection {
+    .mancer-terminal .container ::selection {
       background-color: #f3e5ab;
       text-shadow: none !important;
     }
 
-    .VanillaTerm output {
+    .mancer-terminal output {
       clear: both;
       line-height: 1.25em;
       width: 100%;
     }
-      .VanillaTerm output pre {
+      .mancer-terminal output pre {
         margin: 0;
       }
-      .VanillaTerm output span {
+      .mancer-terminal output span {
         display: block;
         font-weight: normal;
         color: #dddddd;
       }
 
-    .VanillaTerm .prompt, .VanillaTerm a {
+    .mancer-terminal .prompt, .mancer-terminal a {
       color: #f3e5ab;
       font-weight: bold;
     }
 
-    .VanillaTerm .prompt {
+    .mancer-terminal .prompt {
       line-height: 1.25em;
       margin-right: 0.5em;
     }
 
-    .VanillaTerm .command {
+    .mancer-terminal .command {
       display: flex;
     }
 
-      .VanillaTerm .command.input .prompt {
+      .mancer-terminal .command.input .prompt {
         color: white;
         font-weight: normal;
       }
 
-      .VanillaTerm .command.idle .input {
+      .mancer-terminal .command.idle .input {
         display: none;
       }
 
-      .VanillaTerm .command.hidden .prompt {
+      .mancer-terminal .command.hidden .prompt {
         display: none;
       }
 
-      .VanillaTerm .command.hidden .input {
+      .mancer-terminal .command.hidden .input {
         max-width: 1px;
       }
 
-      .VanillaTerm .command .input {
+      .mancer-terminal .command .input {
         background-color: transparent;
         border: none;
         color: inherit;
@@ -79,7 +79,7 @@
         padding: 0;
       }
 
-      .VanillaTerm .command .spinner:before {
+      .mancer-terminal .command .spinner:before {
         display: inline-block;
         content: '⠋';
         animation: spin 1s linear infinite;

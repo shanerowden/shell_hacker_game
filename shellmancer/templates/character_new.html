@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 
 {% block morestyle %}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
-  integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
-{% endblock %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
+      integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">{% endblock %}
 
 {% block sidebar %}
   {% if not current_user.is_authenticated %}
@@ -13,15 +12,9 @@
   {% endif %}
 {% endblock %}
 
-{% block collapse %}
-  <!-- {% include 'mission_nav.html' %} -->
-<h2></h2>
-{% endblock %}
+{% block collapse %}<!-- {% include 'mission_nav.html' %} --><h2></h2>{% endblock %}
 
 {% block content %}
-
-
-
 
 <div class="jumbotron">
 
@@ -115,83 +108,78 @@
       </div>
     </div>
 
-
     <div id="two" class="card-text tab-pane fade">
 
       <div class="center">
         <h4 class="font-inline">
-          A thorough <span class="text-info">background</span> screen...
-        </h4>
+          A thorough <span class="text-info">background</span> screen... </h4>
 
-<p>All offers of employment at EPI are contingent upon clear results of a thorough background check. 
-  Background checks will be conducted on all final candidates and on all employees who are promoted, as deemed necessary.</p>
+        <p>All offers of employment at EPI are contingent upon clear results of a thorough background check.
+           Background checks will be conducted on all final candidates and on all employees who are promoted, as deemed necessary.</p>
 
-  <p>Background checks will include: </p>
+        <p>Background checks will include: </p>
 
+        <hr pt-2>
 
-  <hr pt-2>
+        <code class="font-share">"Shit"<span class="text-muted">, you say to yourself.</span></code>
 
-  <code class="font-share">"Shit"<span class="text-muted">, you say to yourself.</span></code>
+        <hr pb-2>
 
-  <hr pb-2>
+        <p>Background check information will be maintained in a file separate from employees' personnel files for a minimum of five years. EPI reserves the right to modify this policy at any time without notice. </p>
 
-      
+        <hr pt-2>
 
+        <code class="font-share">"Fucking shit..."
+          <span class="text-muted">, you say again more loudly this time, skimming the document down to the bottom.</span></code>
 
-<p>Background check information will be maintained in a file separate from employees' personnel files for a minimum of five years. EPI reserves the right to modify this policy at any time without notice. </p>
+        <hr pb-2>
 
+        <p>"Do you consent to a criminal background check? Do you permit use of your data, which may not lawfully be used against you nor to determine the nature of your employment, but which may be published later on our websites for public usage. All parties are in agreement that we may freely look into the matter at no diservice to the applicant. We remind you that you are not required to answer."</p>
 
-<hr pt-2>
+        <hr pt-2>
 
-<code class="font-share">"Fucking shit..."
-  <span class="text-muted">, you say again more loudly this time, skimming the document down to the bottom.</span></code>
+        <blockquote>
+          <span class="text-muted">You are reading the question now that says, </span>"In the last seven years, have
+                                                                                      you been convicted of a felony
+                                                                                      or completed probation for an
+                                                                                      arrest for which you were not
+                                                                                      convicted?"
+        </blockquote>
 
-<hr pb-2>
+        <hr pb-2>
 
-<p>"Do you consent to a criminal background check? Do you permit use of your data, which may not lawfully be used against you nor to determine the nature of your employment, but which may be published later on our websites for public usage. All parties are in agreement that we may freely look into the matter at no diservice to the applicant. We remind you that you are not required to answer."</p>
+        <div class="container btn-group center" ml-3>
 
-<hr pt-2>
+          <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                  data-placement="left" data-trigger="focus" title="That says a lot..."
+                  data-content="Do you think they'll not find out on their own? How does it look if you have to pretend like it didn't happen. It did. How could they bring something like this up?"
+                  data-original-title="That says a lot..." onclick="showElem(false)">Admit nothing
+          </button>
 
-<blockquote>
-  <span class="text-muted">You are reading the question now that says, </span>"In the last seven years, have you been convicted of a felony or completed probation for an arrest for which you completed probation?"</blockquote>
+          <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                  data-placement="right" data-trigger="focus" title="Can you even do that?"
+                  data-content="How honest will you be thought? Will you spin it a certain way or will you paint it clearly -- how it really happened. Is that even possible for you to consider?"
+                  data-original-title="Can you even do that?" onclick="showElem(true)">Be honest...
+          </button>
+        </div>
 
-<hr pb-2>
+        <hr p-5>
+        <p class="p-2"></p>
+        <code class="m-1 text-info">You're not certain yet.<br>You haven't spoken of this in nearly five years.</code>
 
-<div class="container btn-group center" ml-3>
+        <hr p-3>
 
-<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" 
-data-placement="left" data-trigger="focus"
-title="That says a lot..." 
-data-content="Do you think they'll not find out on their own? How does it look if you have to pretend like it didn't happen. It did. How could they bring something like this up?" 
-data-original-title="That says a lot...">Admit nothing</button>
+        <p>You will have an opportunity to decide the circumstances that your character was formerly charged with something that you will have had mixed feelings about for many years now. Whether or not you were guilty, if you were justly accused, if you made a horrible mistake, or you utterly deserved it is somewhat in question at this point in the narrative. You are the one who questions how you feel about it.</p>
 
-<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" 
-data-placement="right" data-trigger="focus"
-title="Can you even do that?" 
-data-content="How honest will you be thought? Will you spin it a certain way or will you paint it clearly -- how it really happened. Is that even possible for you to consider?" 
-data-original-title="Can you even do that?">Be honest...</button>
-</div>
+        <p>Several months of hard labor ended with an employee contract and you've been working for Vertico ever since. What the circumstances were was not an assessment you have ever had the luxury of facing often. To be silent about what happened was by necessity. And if it was wrong or right, if you were framed or innocent, it doesn't matter now. It's been a long time.</p>
 
-<hr p-5>
-<p class="p-2"></p>
-<code class="m-1 text-info">You're not certain yet.<br>You haven't spoken of this in nearly five years.</code>
+        <hr p-3>
 
-<hr p-3>
+        <p>
+          That time is coming to an end. This is your last week on board the formerly International Space Station, where you have worked for just under seven years. Most likely, you will not make it out alive. Not on your own. </p>
 
-<p>You will have an opportunity to decide the circumstances that your character was formerly charged with something that you will have had mixed feelings about for many years now. Whether or not you were guilty, if you were justly accused, if you made a horrible mistake, or you utterly deserved it is somewhat in question at this point in the narrative. You are the one who questions how you feel about it.</p>
-
-<p>Several months of hard labor ended with an employee contract and you've been working for Vertico ever since. What the circumstances were was not an assessment you have ever had the luxury of facing often. To be silent about what happened was by necessity. And if it was wrong or right, if you were framed or innocent, it doesn't matter now. It's been a long time.</p>
-
-<hr p-3>
-
-<p>
-  That time is coming to an end. This is your last week on board the formerly International Space Station, where you have worked for just under seven years. Most likely, you will not make it out alive. Not on your own. 
-</p> 
-
-
-
-</li>
-  </ul>
+        </li>
+        </ul>
 
       </div>
 
@@ -199,7 +187,6 @@ data-original-title="Can you even do that?">Be honest...</button>
       <div class="container"></div>
     </div>
 
-    
     <div id="three" class="card-text tab-pane fade">
 
       <div class="center">
@@ -272,23 +259,18 @@ data-original-title="Can you even do that?">Be honest...</button>
   </p>
 </div>
 
-
-
-<a href="https://www.google.com">
+<a href="#">
   <div id="next-button" class="btn default-off text-right">fsfgdsfgdg</div>
 </a>
 
-
 {% endblock %}
 
-{% block buttons %}
-  {% include 'character_new_side.html' %}
-{% endblock %}
+{% block buttons %}{% include 'character_new_side.html' %}{% endblock %}
 
-{% block modals %}
-  {% include 'character_wizard_modals.html' %}
-{% endblock %}
+{% block modals %}{% include 'character_wizard_modals.html' %}{% endblock %}
 
 {% block morescript %}
-<script src="{{ url_for('static', filename='js/spendpoints.js') }}"></script>
+<script src="{{ url_for('static', filename='js/spendpoints.js') }}" defer></script>
+
+
 {% endblock %}

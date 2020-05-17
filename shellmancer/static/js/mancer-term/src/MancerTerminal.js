@@ -1,17 +1,19 @@
 import { cloneCommandNode, COMMANDS, markup } from './modules';
-import style from './VanillaTerminal.css'; // eslint-disable-line
+import style from './MancerTerminal.css'; // eslint-disable-line
 
-const KEY = 'VanillaTerm';
+
+const KEY = 'MancerTerminal';
 
 const { addEventListener, localStorage } = window;
 
 class Terminal {
   constructor(props = {}) {
     const {
-      container = 'vanilla-terminal',
+      container = 'mancer-term',
       commands = {},
-      welcome = 'Welcome to <a href="">Vanilla</a> terminal.',
-      prompt = '',
+      welcome = `Welcome to <a href="#">Vertico Node</a>. The time is ${Date()}. Have you read thew <a href="#">latest news</a>?`,
+      host = "192.168.1.176",
+      prompt = '$',
       separator = '&gt;',
     } = props;
     this.commands = Object.assign({}, commands, COMMANDS);
@@ -144,10 +146,10 @@ class Terminal {
     DOM.prompt.innerHTML = '<div class="spinner"></div>';
   }
 
-  prompt(prompt, callback = () => {}) {
+  prompt(prompt, callback, device = () => {}) {
     this.state.prompt = true;
     this.onAskCallback = callback;
-    this.DOM.prompt.innerHTML = `${prompt}:`;
+    this.DOM.prompt.innerHTML = `${prompt}@{device}:`;
     this.resetCommand();
     this.DOM.command.classList.add('input');
   }
@@ -171,6 +173,6 @@ class Terminal {
   }
 }
 
-if (window) window.VanillaTerminal = Terminal;
+if (window) window.MancerTerminal = Terminal;
 
 export default Terminal;

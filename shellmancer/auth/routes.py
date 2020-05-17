@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, url_for, render_template, flash, request
 from flask_login import current_user, login_required, login_user, logout_user
 from shellmancer import db, ph
-from shellmancer.models import UserAccount
+from shellmancer.models import UserAccount, CharacterSheet
 from shellmancer.auth.utils import send_reset_email, send_verify_email
 from argon2.exceptions import InvalidHash
 from shellmancer.auth.forms import (
@@ -14,7 +14,7 @@ auth = Blueprint('auth', 'shellmancer')
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     campaign = SinglePlayerCampaign.query.get(1)
-    # characters = None
+    characters = CharacterSheet.query.all()
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
 
@@ -33,12 +33,14 @@ def register():
               + "Check your email to verify account for full functionality. You may login now.", 'success')
         return redirect(url_for('auth.login'))
 
-    return render_template("register.html", title="Register", form=form, character_count=0, campaign=campaign)
+    return render_template("register.html", title="Register", form=form, campaign=campaign,
+                           characters=characters, character_count=len(characters))
+
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     campaign = SinglePlayerCampaign.query.get(1)
-    # characters = None
+    characters = CharacterSheet()
     if current_user.is_authenticated:
         return redirect(url_for('users.player_profile'))
 
@@ -56,7 +58,7 @@ def login():
 
     return render_template("login.html",
                            title="Login",
-                           form=form, campaign=campaign)
+                           form=form, campaign=campaign, character_count=0)
 
 
 @auth.route('/logout')

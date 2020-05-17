@@ -85,18 +85,18 @@
 <!-- Bottom Fixed -->
 <div class="fixed-bottom">
   <!-- Vanilla Terminal  -->
-  <div id="vanilla-terminal" class="default-off"></div>
+  <div id="mancer-terminal" class="default-off"></div>
 </div>
 <!--  -->
-<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lib/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lib/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lib/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lib/custom.js') }}"></script>
 
-<script src="{{ url_for('static', filename='js/vanilla-terminal.js') }}"></script>
-<script src="{{ url_for('static', filename='js/my-script.js') }}"></script>
-<script src="{{ url_for('static', filename='js/toggle-term.js') }}"></script>
+<script src="{{ url_for('static', filename='js/mancer-term/dist/mancerTerm.js') }}"></script>
+<script src="{{ url_for('static', filename='js/mancer-term/dist/toggleTerm.js') }}"></script>
 
-<script src="{{ url_for('static', filename='js/myjq.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lib/popOverJq.js') }}"></script>
 
 {% block morescript %}{% endblock %}
 </body>
