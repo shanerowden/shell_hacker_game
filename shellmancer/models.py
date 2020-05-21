@@ -2,7 +2,7 @@ from shellmancer import db, login_manager, app
 from datetime import datetime
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql.json import JSONB
 
 
 @login_manager.user_loader
@@ -112,9 +112,7 @@ class CharacterSheet(db.Model):
     player_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=False)
     campaign_id = db.Column(db.Integer, db.ForeignKey('campaign.id'), nullable=False)
 
-    attr_a = db.Column(db.Integer)
-    attr_b = db.Column(db.Integer)
-    attr_c = db.Column(db.Integer)
+    stats = db.Column(JSONB)
 
     player = db.relationship('PlayerProfile', back_populates='characters')
     campaign = db.relationship('SinglePlayerCampaign', back_populates="character_sheet")

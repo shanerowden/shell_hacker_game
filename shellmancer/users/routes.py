@@ -2,8 +2,9 @@ from flask import Blueprint, redirect, url_for, render_template, flash, request
 from flask_login import current_user, login_required
 from shellmancer import db
 from shellmancer.users.utils import save_picture
-from shellmancer.models import SinglePlayerCampaign
+from shellmancer.models import SinglePlayerCampaign, CharacterSheet
 from shellmancer.users.forms import UserSettingsForm
+import json
 
 users = Blueprint('users', 'shellmancer')
 
@@ -68,3 +69,47 @@ def user_settings():
     return render_template('settings.html',
                            title=f"Settings for {current_user.email}",
                            form=form)
+
+@users.route('/character-submit/<camp_id>', methods=['POST'])
+@login_required
+def character_submit(camp_id):
+    if request.method == 'POST':
+        print('Incoming..')
+        j = json.loads(request.get_data())
+
+        if len(j) != 5:
+            return 'OBJECT TOO LONG', 403
+
+        meat, leet, street = attrs = j['attr1'], j['attr2'], j['attr3']
+        try:
+            for attr in attrs:
+                if not 1 <= attr <= 7:
+                    return 'BAD ATTR VALUE', 403
+        except TypeError:
+            return 'ATTR SHOULD BE INT', 403
+
+        honesty = j['honesty']
+        print(f"honesty: {honesty}")
+        if not (honesty == 1 or honesty == -1):
+            return 'HONESTY IS DISHONEST', 403
+
+        loadout = j['loadout']
+        if len(loadout) != 2:
+            return 'BAD LOADOUT QUANTITY', 403
+
+        loadout_items = ["Samurai Sword", "85.44 GB Wordlist",
+                         "Stolen Cyberdeck", "Fake Work Visa"]
+
+        for item in loadout:
+            if item not in loadout_items:
+                return "BAD LOADOUT ITEM", 403
+
+        stats = dict(meat=meat, leet=leet, street=street,
+                     honesty=honesty, loadout=loadout)
+
+        new_character = CharacterSheet(player_id=current_user.id,
+                                       campaign_id=camp_id, stats=stats)
+        db.session.add(new_character)
+        db.session.commit()
+
+        return 'OK', 200

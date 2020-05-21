@@ -5,12 +5,24 @@ let startingAttrValue = 1;
 let personalityTab = document.querySelector('#personality-tab');
 let honesty;
 let toggleDivs = [];
-let click;
+let clicky = 0;
 const devices = document.querySelectorAll('.devices');
 const deviceTitles = document.querySelectorAll('.option-title');
 let toggleSlots = 2;
 let submitBtn = document.querySelector('#character-submit');
 let character;
+
+submitBtn.addEventListener('click', function() {
+  console.log("Button Submit")
+  fetch('/character-submit', {
+    method: 'POST',
+    body: JSON.stringify(character)
+  }).then(function (response) {
+    return response.text();
+  }).then(function (text) {
+    console.log(`POST response: ${text}`)
+  })
+})
 
 
 class ToggleDiv{
@@ -59,7 +71,7 @@ class ToggleDiv{
         this.elem.classList.toggle(this.toggleClass);
         this.titleElem.classList.toggle("text-info");
       } else {
-        alert("Cant do it");
+        console.log("Cant do it");
       }
   }
 
@@ -74,10 +86,7 @@ class CharacterStats{
     this.attr2 = attr2;
     this.attr3 = attr3;
     this.loadout = [];
-    this.honesty = {
-      not_lied: 0,
-      lied: 0
-    };
+    this.honesty = 0;
   }
 }
 
@@ -173,9 +182,6 @@ function increasePoints(bar, attr) {
 }
 
 
-
-
-
 // toggle div
 for (let idx in devices) {
   let div = new ToggleDiv(devices[idx], 'border-info', deviceTitles[idx]);
@@ -183,16 +189,16 @@ for (let idx in devices) {
   toggleDivs.push(div);
 }
 
-
-
 function showElem(considered_lying) {
   document.querySelector('#loadout-tab').classList.remove('disabled');
-  if (considered_lying === false && click < 1) {
+  if (considered_lying === false && clicky < 1) {
       character.honesty++;
-  } else if (considered_lying === true && click < 1) {
-      honesty--;
+  } else if (considered_lying === true && clicky < 1) {
+    character.honesty--;
   }
+  clicky++;
 }
+
 
 let personalityModalHandler = function() {
   click = 0;
@@ -208,20 +214,3 @@ let personalityModalHandler = function() {
 
 personalityTab.addEventListener('click', personalityModalHandler, false);
 
-primary_attr = Math.max(character.attr1.value, character.attr2.value, character.attr3.value)
-terniary_attr = Math.min(character.attr1.value, character.attr2.value, character.attr3.value)
-
-flawed = null, false;
-advantaged = false;
-for (let attr of [character.attr1.value, character.attr2.value, character.attr3.value]) {
-  if (attr === 1) {
-    console.log(attr)
-    flawed = attr, true;
-    character.flawed = flawed;
-  } else if (attr == 7) {
-    console.log(attr)
-    advantaged = attr, true;
-    character.advantaged = advantaged;
-  }
-
-}
