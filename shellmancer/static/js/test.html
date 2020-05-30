@@ -1,12 +1,693 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing TypeScript</title>
-    <script src="./tstest.js"></script>
+  <meta charset="UTF-8">
+  
+  <title>Shellmancer</title>
+  
+  <link href="/static/css/slate.css" type="text/css" rel="stylesheet">
+  <link href="/static/css/bullstrap.css" type="text/css" rel="stylesheet">
+  <link href="/static/css/responsive.css" type="text/css" rel="stylesheet">
+  <link href="/static/css/ripped_google_fonts.css" type="text/css" rel="stylesheet">
+  <link href="/static/css/style.css" type="text/css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
+      integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+
 </head>
-<body>
-    
+<body class="noselect">
+
+<!-- Top Menubar Element -->
+
+  <div id="top-nav" class="fixed-top">
+  <ul class="top-nav nav-tabs bg-primary container-fluid">
+
+    <!-- Account Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+         aria-expanded="false" href="#">
+        Account
+      </a>
+
+      <div class="dropdown-menu bg-dark">
+        <div id="account-menu-div">
+          
+          <a id="account-menu-get-verified" class="dropdown-item" href="/verify">
+            <strong><span class="text-warning">Get Verified</span></strong>
+          </a>
+          
+
+          <a id="account-menu-player-profile" class="dropdown-item" href="/player">
+            <span>Player Profile</span>
+          </a>
+
+          
+
+          <a id="account-menu-settings" class="dropdown-item" href="/settings">
+            <span>Settings</span>
+          </a>
+
+          <a id="account-menu-logout" class="dropdown-item" href="/logout">
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </li>
+
+    <!-- View Dropdown Button -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+         aria-expanded="false" href="#">
+        Browse
+      </a>
+
+      <div class="dropdown-menu bg-dark">
+        <div id="browse-menu-div" class="inactive">
+          <a id="browse-menu-campaigns" class="dropdown-item" href="/campaign">
+            <span>Campaigns</span>
+          </a>
+
+          <a id="browse-menu-open-link" class="dropdown-item" href="#">
+            <span>Characters</span>
+          </a>
+
+          <a id="browse-menu-corps" class="dropdown-item" href="#">
+            <span>Corporations</span>
+          </a>
+
+          <a id="browse-menu-contacts" class="dropdown-item" href="#">
+            <span>Contacts</span>
+          </a>
+
+          <a id="browse-menu-locales" class="dropdown-item" href="#">
+            <span>Places</span>
+          </a>
+
+        </div>
+      </div>
+    </li>
+
+    <!-- View Dropdown Button -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+         aria-expanded="false">
+        View
+      </a>
+
+      <div class="dropdown-menu bg-dark">
+        <div id="view-menu-div" class="inactive">
+          <a id="open-terminal" class="dropdown-item" href="#">
+            <span id="terminal-option-listing-open">Open Terminal</span>
+            <span id="terminal-option-listing-close" class="default-off">Close Terminal</span>
+          </a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Tools Dropdown -->
+    <!--<li class="nav-item dropdown">-->
+    <!-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">-->
+    <!--   Tools-->
+    <!-- </a>-->
+
+    <!-- <div class="dropdown-menu bg-dark">-->
+    <!--   <a id="open-terminal" class="dropdown-item" href="#">-->
+    <!--    <span id="terminal-option-listing-open">Open Terminal</span>-->
+    <!--    <span id="terminal-option-listing-close" class="default-off">Close Terminal</span>-->
+    <!--   </a>-->
+    <!-- </div>-->
+    <!--</li>-->
+
+    <!-- Help Dropdown -->
+    <!--<li class="nav-item dropdown">-->
+    <!-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">-->
+    <!--   Help-->
+    <!-- </a>-->
+
+    <!--  &lt;!&ndash; Dropdown 1  &ndash;&gt;-->
+    <!--   <div class="dropdown-menu bg-dark">-->
+    <!--    <a id="help-menu-docs" class="dropdown-item" href="/docs">-->
+    <!--      <span>Documentation</span>-->
+    <!--    </a>-->
+    <!--    <a id="help-menu-about" class="dropdown-item" href="#">-->
+    <!--      <span>About</span>-->
+    <!--    </a>-->
+    <!--   </div>-->
+
+<!--    </li>-->
+  </ul>
+</div>
+
+<!--  -->
+
+<!-- Binary Heading Piece -->
+<div class="jumbotron bg-dark"
+     style="background: url( /static//img/matrixcode.png );">
+  <h1 id="header-title"
+      class="container-fluid display-1 bg-primary border border-light text-light text-center">
+    <span class="font-inline text-success"
+          style="text-shadow: 5px 8px var(--purple);">
+      SHELLMANCER
+    </span>
+  </h1>
+  <div class="container">
+    <!-- Tagline space. -->
+  </div>
+</div>
+
+<!-- Div Creates the Outer Margins on the left and right at full size viewport -->
+<div class="container">
+
+  <!-- The inner background behind the side bar and the content space -->
+  <div class="container-fluid vertical-wrap">
+
+    <div id="leftbar-alt">
+      
+    </div>
+    <div class="row">
+
+      <!-- Leftbar -->
+      <div id="leftbar" class="col-xs-0 col-sm-0 col-md-0 col-lg-3 col-xl-3">
+        
+  
+    <div id="accordion-cards" style="display: none;">
+    <div class="list-group">
+        <a class="btn btn-primary" href="#statusCollapse" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="statusCollapse">
+            <div class="card-header bg-dark" id="statusLabel">
+                <i class="fa fa-heartbeat" aria-hidden="true"></i>Status
+            </div>
+        </a>
+        <div id="statusCollapse" class="collapse show" aria-labelledby="statusLabel" data-parent="#accordion-cards">
+            <div class="card-body">
+
+                           
+
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        <small>Donec id elit non mi porta.</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small class="text-muted">3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        <small class="text-muted">Donec id elit non mi porta.</small>
+                    </a>
+                 </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div id="accordion-attributes" class="hidden">
+    <div class="list-group">
+        <a class="btn btn-primary" href="#statusCollapse2" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="statusCollapse2">
+            <div class="card-header bg-dark" id="statusLabel2">
+                <i class="fa fa-heartbeat" aria-hidden="true"></i>Attributes
+            </div>
+        </a>
+        <div id="statusCollapse2" class="collapse show" aria-labelledby="statusLabel2" data-parent="#accordion-cards">
+            <div class="card-body">
+
+                           
+
+            
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center" id="meatOnMenu">
+                <span class="font-orbitron">meat</span>
+                <span class="badge badge-danger badge-pill" id="meatNumOnMenu">1</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" id="leetOnMenu">
+                    <span class="font-orbitron">leet</span>
+                <span class="badge badge-success badge-pill" id="leetNumOnMenu">1</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" id="streetOnMenu">
+                    <span class="font-orbitron">street</span>
+                <span class="badge badge-purple badge-pill" id="streetNumOnMenu">1</span>
+                </li>
+            </ul>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+  
+
+      </div>
+      <!-- Content -->
+      <div id="contentbar" class="col-xs-0 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+        <!--Flash Messages-->
+        <div class="container">
+          
+          
+          
+        </div>
+        <div id="rightbar-alt" class="mt-3 mb-3">
+          
+        </div>
+        <!--  Next Card  -->
+
+        <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-item nav-link" href="#">
+      
+      <i class="fa fa-play-circle" aria-hidden="true"></i>
+      <span class="">Plays</span></a>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fa fa-heartbeat" aria-hidden="true"></i>
+            <span class="">Status</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fa fa-clipboard" aria-hidden="true"></i>
+            <span class="">Intel</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fa fa-binoculars" aria-hidden="true"></i>
+            <span class="">Watch</span></a>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fa fa-tasks" aria-hidden="true"></i>
+            <span class="">Mission</span></a>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fa fa-users fa-lg" aria-hidden="true"></i>
+            <span class="">Contact</span></a>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+   --><h2></h2>
+
+        
+
+<div class="jumbotron">
+
+  <div class="tab-content">
+    <div id="one" class="card-text tab-pane fade show active">
+
+      <div class="center">
+        <h4 class="font-inline">
+          Spend <span id="remaining-points" class="text-info"></span> points on primary attributes. </h4>
+      </div>
+
+      <hr class="my-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="font-orbitron ml-5">
+              meat: <span id="attribute-one" class="text-danger font-inline display"></span>
+            </h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="reducePoints(getWizardBar1, attr1)">
+              <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="progress bg-primary" id="wizardProgress1">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" id="wizardBar1"
+                   role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="increasePoints(getWizardBar1, attr1)">
+              <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <h5 class="font-orbitron ml-5">
+              l33t: <span id="attribute-two" class="text-success font-inline"></span>
+            </h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="reducePoints(getWizardBar2, attr2)">
+              <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="progress bg-primary" id="wizardProgress2">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="wizardBar2"
+                   role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="increasePoints(getWizardBar2, attr2)">
+              <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <h5 class="font-orbitron ml-5">
+              street: <span id="attribute-three" class="text-purple font-inline"></span>
+            </h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="reducePoints(getWizardBar3, attr3)">
+              <i class="fa fa-minus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="progress bg-primary" id="wizardProgress3">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-purple" id="wizardBar3"
+                   role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="btn btn-sm center btn-primary" onclick="increasePoints(getWizardBar3, attr3)">
+              <i class="fa fa-plus fa-sm" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="two" class="card-text tab-pane fade">
+
+      <div class="center">
+        <h4 class="font-inline">
+          A thorough <span class="text-info">background</span> screen... </h4>
+
+        <p>All offers of employment at EPI are contingent upon clear results of a thorough background check.
+           Background checks will be conducted on all final candidates and on all employees who are promoted, as deemed necessary.</p>
+
+        <p>Background checks will include: </p>
+
+        <hr pt-2>
+
+        <code class="font-share">"Shit"<span class="text-muted">, you say to yourself.</span></code>
+
+        <hr pb-2>
+
+        <p>Background check information will be maintained in a file separate from employees' personnel files for a minimum of five years. EPI reserves the right to modify this policy at any time without notice. </p>
+
+        <hr pt-2>
+
+        <code class="font-share">"Fucking shit..."
+          <span class="text-muted">, you say again more loudly this time, skimming the document down to the bottom.</span></code>
+
+        <hr pb-2>
+
+        <p>"Do you consent to a criminal background check? Do you permit use of your data, which may not lawfully be used against you nor to determine the nature of your employment, but which may be published later on our websites for public usage. All parties are in agreement that we may freely look into the matter at no diservice to the applicant. We remind you that you are not required to answer."</p>
+
+        <hr pt-2>
+
+        <blockquote>
+          <span class="text-muted">You are reading the question now that says, </span>"In the last seven years, have
+                                                                                      you been convicted of a felony
+                                                                                      or completed probation for an
+                                                                                      arrest for which you were not
+                                                                                      convicted?"
+        </blockquote>
+
+        <hr pb-2>
+
+        <div class="container btn-group center" ml-3>
+
+          <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                  data-placement="left" data-trigger="focus" title="That says a lot..."
+                  data-content="Do you think they'll not find out on their own? How does it look if you have to pretend like it didn't happen. It did. How could they bring something like this up?"
+                  data-original-title="That says a lot..." onclick="showElem(false)">Admit nothing
+          </button>
+
+          <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                  data-placement="right" data-trigger="focus" title="Can you even do that?"
+                  data-content="How honest will you be thought? Will you spin it a certain way or will you paint it clearly -- how it really happened. Is that even possible for you to consider?"
+                  data-original-title="Can you even do that?" onclick="showElem(true)">Be honest...
+          </button>
+        </div>
+
+        <hr p-5>
+        <p class="p-2"></p>
+        <code class="m-1 text-info">You're not certain yet.<br>You haven't spoken of this in nearly five years.</code>
+
+        <hr p-3>
+
+        <p>You will have an opportunity to decide the circumstances that your character was formerly charged with something that you will have had mixed feelings about for many years now. Whether or not you were guilty, if you were justly accused, if you made a horrible mistake, or you utterly deserved it is somewhat in question at this point in the narrative. You are the one who questions how you feel about it.</p>
+
+        <p>Several months of hard labor ended with an employee contract and you've been working for Vertico ever since. What the circumstances were was not an assessment you have ever had the luxury of facing often. To be silent about what happened was by necessity. And if it was wrong or right, if you were framed or innocent, it doesn't matter now. It's been a long time.</p>
+
+        <hr p-3>
+
+        <p>
+          That time is coming to an end. This is your last week on board the formerly International Space Station, where you have worked for just under seven years. Most likely, you will not make it out alive. Not on your own. </p>
+
+        </li>
+        </ul>
+
+      </div>
+
+      <hr class="my-4">
+      <div class="container"></div>
+    </div>
+
+    <div id="three" class="card-text tab-pane fade">
+
+      <div class="center">
+        <h4 class="font-inline">
+          You Have <span class="text-info"">2</span> Things to Your Name... </h4>
+      </div>
+      <hr class="my-4">
+      <div class="container font-quantico">
+        <div class="row">
+
+          <div class="col-6">
+            <div class="card devices" id="device-one">
+              <div class="card-body">
+                <h4 class="card-title option-title font-quantico">Stolen Cyberdeck</h4>
+                <h6 class="card-subtitle mb-2 text-muted">+1 street / -1 leet</h6>
+                <p class="card-text">Can't say for sure where it came from, but it's got...
+                                     somebody's shit on it. You can't seem to wipe it clean. Maybe it's got something useful.
+                                     Hey, it's yours now.</p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="card devices" id="device-two">
+              <div class="card-body">
+                <h4 class="card-title option-title font-quantico">Samurai Sword</h4>
+                <h6 class="card-subtitle mb-2 text-muted">+1 meat / -1 street</h6>
+                <p class="card-text">"Hey, you seen that cat with the sword on 16th and Commerce? Nah, fuck that. We bouta find
+                                     another corner. That's his corner." Ain't no body fuck with you.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mt-4">
+
+          <div class="col-6">
+            <div class="card devices" id="device-three">
+              <div class="card-body">
+                <h4 class="card-title option-title font-quantico">85.44 GB Wordlist</h4>
+                <h6 class="card-subtitle mb-2 text-muted">+1 leet / -1 meat</h6>
+                <p class="card-text">A prolific assembly of words like "123456 password iloveyou babygirl," all organized
+                                     by demographic users: porn_addicts, sports_fans, script_kids.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="card devices" id="device-four">
+              <div class="card-body font-quantico">
+                <h4 class="card-title option-title font-quantico">Fake Work Visa</h4>
+                <h6 class="card-subtitle mb-2 text-muted">+1 street / -1 meat</h6>
+                <p class="card-text">"You know, my dad worked for Vertico for 25 years. It's a good company. You're not
+                                     supposed to be here this time of night, but... you have a good night, sir." </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <p class="lead">
+    <a id="character-submit" class="btn btn-primary btn-lg default-off" href="#" role="button">Learn more</a>
+  </p>
+</div>
+
+<a href="#">
+  <div id="next-button" class="btn default-off text-right">fsfgdsfgdg</div>
+</a>
+
+
+      </div>
+      <!-- Rightbar -->
+      <div id="rightbar" class="col-xs-0 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        
+
+
+<div class="nav">
+  <a href="#one" data-toggle="tab" class="btn btn-primary nav-link active font-orbitron">Attributes</a>
+  <a href="#two" data-toggle="tab" class="btn btn-primary nav-link font-orbitron disabled" id="personality-tab">Background</a>
+  <a href="#three" data-toggle="tab" class="btn btn-primary nav-link font-orbitron disabled" id="loadout-tab">Loadout</a>
+
+</div>
+
+<div class="container">
+  <div class="row center">
+
+    <div class="btn-group-sm center ml-5 mt-3">
+
+
+        <button type="button" class="btn btn-warning" title="" data-container="body"
+                data-toggle="popover" data-placement="bottom" data-trigger="focus"
+                data-content=""
+                data-original-title="Having trouble?">Help</button>
+
+
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Dialog  characterWizard1 -->
+<div class="modal fade" id="characterWizard1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title">Character Creation Wizard</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-primary">
+        <p>
+           You will be given a series of choices to make, the first of which will be how to allocate your primary
+           attributes.</p>
+<p></p>
+
+        <div class="progress" id="wizardProgress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" id="wizardBar1"
+               role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 65%"></div>
+        </div>
+
+        <div class="progress" id="wizardProgress2">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="wizardBar2"
+               role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 15%"></div>
+        </div>
+
+
+        <div class="progress" id="wizardProgress3">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-purple" id="wizardBar3"
+               role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+        </div>
+
+        <p>As expected, they represent physical prowess, mental accuity, and social abilities. This is nothing new for a role playing game. Let's have a look at these values.</p>
+
+
+
+      </div>
+      <div class="modal-footer bg-dark">
+<!--        <button type="button" class="btn btn-sm btn-primary" >Save changes</button>-->
+        <a class="btn btn-sm btn-secondary"
+           href="/campaign/1/new">Ready!</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal Dialog  characterWizard2 -->
+<div class="modal" id="characterWizard2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title">Character Creation Wizard</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-primary">
+        <p>You just lost your job.</p>
+
+
+
+
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-purple" role="progressbar"
+               aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+        </div>
+      </div>
+      <div class="modal-footer bg-dark">
+<!--        <button type="button" class="btn btn-sm btn-primary" >Save changes</button>-->
+        <button type="button" class="btn btn-sm btn-secondary"
+                data-toggle="modal" data-target="#characterWizard2">Next</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Fixed -->
+<div class="fixed-bottom">
+  <!-- Vanilla Terminal  -->
+  <div id="mancer-terminal" class="default-off"></div>
+</div>
+<!--  -->
+<script src="/static/js/libs/jquery.min.js"></script>
+<script src="/static/js/libs/popper.min.js"></script>
+<script src="/static/js/libs/bootstrap.min.js"></script>
+<script src="/static/js/libs/custom.js"></script>
+
+<script src="/static/js/libs/popOverJq.js"></script>
+
+<script src="/static/js/spendpoints.js" defer></script>
+
+
+
 </body>
 </html>
